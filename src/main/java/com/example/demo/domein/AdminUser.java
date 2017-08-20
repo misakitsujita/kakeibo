@@ -1,8 +1,8 @@
 package com.example.demo.domein;
 
-public class User {
+public class AdminUser {
 	
-	private Integer id;
+private Integer id;
 	
 	private String name;
 	
@@ -31,7 +31,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }
