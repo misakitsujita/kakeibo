@@ -8,4 +8,6 @@ spring:
    url: jdbc:postgresql://localhost:5432/kakeibo
    username: postgres
    password: postgres
-  
+   
+server:
+  context-path: /kakeibo
