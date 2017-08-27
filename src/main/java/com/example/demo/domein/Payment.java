@@ -53,6 +53,14 @@ public class Payment {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	@Override
+	public String toString() {
+		return "Payment [id=" + id + ", userId=" + userId + ", categoryId=" + categoryId + ", payment=" + payment
+				+ ", date=" + date + "]";
+	}
+	
+	
 	
 	
 
