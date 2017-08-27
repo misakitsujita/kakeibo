@@ -37,6 +37,15 @@ public class CategoryRepository {
 	}
 
 	/**
+	 * 全件検索.
+	 * @return
+	 */
+	public List<Category> findAll(){
+		String sql ="SELECT id,category FROM categories";
+		List<Category> categoryList = template.query(sql, CATEGORY_ROWMAPPER);
+		return categoryList;
+	}
+	/**
 	 * カテゴリー名から検索する.
 	 * @param category
 	 * @return
