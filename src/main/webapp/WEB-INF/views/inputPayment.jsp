@@ -11,9 +11,13 @@
 </head>
 <body>
 	<h1>支出入力画面</h1>
-	<form:form modelAttribute="inputPaymentForm" action="${pageContent.request.contextPath}/inputPaymanet/payment">
-	支出：<form:input path="payment"/><br>
-		カテゴリー：<form:select path="categoryId" items="${categoryList}" itemValue="category"/><br>
+	<form:form modelAttribute="inputPaymentForm"
+		action="${pageContext.request.contextPath}/inputPayment/payment">
+	支出：<form:input path="payment" />
+		<br>
+		カテゴリー：<form:select path="categoryId" items="${categoryList}"
+			itemValue="category" />
+		<br>
 		<input type="submit" value="送信">
 	</form:form>
 </body>

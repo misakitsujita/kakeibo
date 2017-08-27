@@ -50,6 +50,6 @@ public class InputPaymentController {
 			payment.setDate(new Date());
 			pRepository.save(payment);
 		}
-		return "inputPayment";
+		return index(model);
 	}
 }
