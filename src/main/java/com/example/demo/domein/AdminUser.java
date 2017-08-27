@@ -1,11 +1,11 @@
 package com.example.demo.domein;
 
 public class AdminUser {
-	
-private Integer id;
-	
+
+	private Integer id;
+
 	private String name;
-	
+
 	private String password;
 
 	public Integer getId() {
