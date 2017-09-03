@@ -14,19 +14,35 @@
 </head>
 <body>
 	<div class="container" align="center">
-	<h1>ログイン画面</h1>
+	<h2>ログイン画面</h2>
 	<form:form modelAttribute="userLoginForm" action="${pageContext.request.contextPath}/userLogin/login">
 		<table>
 				<tr>
-					<td>名前 : <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td>名前  <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
 					<td><form:input path="name"/></td>
 				</tr>
 				<tr>
-					<td>パスワード : <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td>パスワード  <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
 					<td><form:input path="password"/></td>
 				</tr>
 		</table>
 		<br><input type="submit" value="ログイン" class="btn btn-info">
+	</form:form>
+	
+	<form:form modelAttribute="userInsertForm" action="${pageContext.request.contextPath}/userLogin/insert">
+	<h2>新規登録</h2>
+		<table>
+				<tr>
+					<td>名前  <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td><form:input path="name"/></td>
+				</tr>
+				<tr>
+					<td>パスワード  <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td><form:input path="password"/></td>
+				</tr>
+		</table>
+		<br><input type="submit" value="登録" class="btn btn-info">
+		<div><c:out value="${message}"></c:out></div>
 	</form:form>
 	</div>
 </body>
