@@ -9,6 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="userHeader.jsp">
+		<jsp:param value="${userList.name}" name="name" />
+	</jsp:include>
 <h1>家計簿トップ画面</h1>
+
+	<jsp:include page="userFooter.jsp" />
 </body>
 </html>
