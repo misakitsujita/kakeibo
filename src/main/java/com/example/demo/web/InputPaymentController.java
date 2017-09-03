@@ -40,23 +40,17 @@ public class InputPaymentController {
 		List<User> user= urepository.load(1);
 		
 		List<Category> category = cRepository.findAll();
-		System.out.println(category);
-		System.out.println(user);
 		model.addAttribute("categoryList", category);
 		model.addAttribute("userList", user);
 		return "inputPayment";
 	}
 	
 	@RequestMapping("/payment")
-	public String payment(@Validated InputPaymentForm form,BindingResult result,Model model,
-			@RequestParam("userId") Integer userId){
-		System.out.println("payment");
-		System.out.println(form);
+	public String payment(@Validated InputPaymentForm form,BindingResult result,Model model){
 		if(result.hasErrors()){
 			return index(model);
 		}else{
 			//cRepository.findByCategory();
-			
 			Payment payment = new Payment();
 			payment.setUserId(Integer.parseInt(form.getUserId()));
 			payment.setCategoryId(Integer.parseInt(form.getCategoryId()));

@@ -18,12 +18,12 @@
 <body>
 	<div class="container" align="center">
 		<jsp:include page="userHeader.jsp">
-			<jsp:param value="${userList.name}" name="name" />
+			<jsp:param value="${userList[0].name}" name="name" />
 		</jsp:include>
 		<h1>支出入力画面</h1>
 		<form:form modelAttribute="inputPaymentForm"
 			action="${pageContext.request.contextPath}/inputPayment/payment">
-            <hiddun id="userId" value ="${userList.id}">
+            <input type="hidden" name="userId" value ="${userList[0].id}">
 			<table>
 				<tr>
 					<td>支出：</td>
