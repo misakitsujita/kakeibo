@@ -46,15 +46,15 @@ public class UserLoginController {
 	public String index(@Validated userLoginForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return index();
-		} else {
-			String name = form.getName();
-			String password = form.getPassword();
-			List<User> userList = userRepository.findByNameAndPassword(name, password);
-			if (userList.get(0).getName() == name && userList.get(0).getPassword() == password) {
-				model.addAttribute("userList", userList);
-				return "/topView";
-			}
 		}
-		return "/topView";
+		String name = form.getName();
+		String password = form.getPassword();
+		List<User> userList = userRepository.findByNameAndPassword(name, password);
+		if (userList.get(0).getName() == name && userList.get(0).getPassword() == password) {
+			model.addAttribute("userList", userList);
+			return "/topView";
+		} else {
+			return index();
+		}
 	}
 }

@@ -18,17 +18,15 @@
 	<form:form modelAttribute="userLoginForm" action="${pageContext.request.contextPath}/userLogin/login">
 		<table>
 				<tr>
-				<th>名前 </th>
-				<td><form:input path="name"/></td>
-				<td><form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td>名前 : <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td><form:input path="name"/></td>
 				</tr>
 				<tr>
-				<th>パスワード </th>
-				<td><form:input path="password"/></td>
-				<td><form:errors path="password" cssStyle="color:red" element="div"></form:errors></td>
+					<td>パスワード : <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td><form:input path="password"/></td>
 				</tr>
 		</table>
-		<div><input type="submit" value="ログイン" class="btn btn-info"></div>
+		<br><input type="submit" value="ログイン" class="btn btn-info">
 	</form:form>
 	</div>
 </body>
