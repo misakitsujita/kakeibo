@@ -11,17 +11,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domein.Category;
 import com.example.demo.domein.Payment;
+import com.example.demo.domein.User;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.PaymentRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.web.form.InputPaymentForm;
 
 @Controller
 @Transactional
 @RequestMapping("/inputPayment")
 public class InputPaymentController {
+	@Autowired UserRepository urepository; 
 	@Autowired CategoryRepository cRepository; 
 	@Autowired PaymentRepository pRepository; 
 	
@@ -32,17 +36,27 @@ public class InputPaymentController {
 	
 	@RequestMapping("/")
 	public String index(Model model){
+		//動作確認用
+		List<User> user= urepository.load(1);
+		
 		List<Category> category = cRepository.findAll();
 		System.out.println(category);
+		System.out.println(user);
 		model.addAttribute("categoryList", category);
+		model.addAttribute("userList", user);
 		return "inputPayment";
 	}
 	
 	@RequestMapping("/payment")
-	public String payment(@Validated InputPaymentForm form,BindingResult result,Model model){
+	public String payment(@Validated InputPaymentForm form,BindingResult result,Model model,
+			@RequestParam("userId") Integer userId){
+		System.out.println("payment");
+		System.out.println(form);
 		if(result.hasErrors()){
 			return index(model);
 		}else{
+			//cRepository.findByCategory();
+			
 			Payment payment = new Payment();
 			payment.setUserId(Integer.parseInt(form.getUserId()));
 			payment.setCategoryId(Integer.parseInt(form.getCategoryId()));

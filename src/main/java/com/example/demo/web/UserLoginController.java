@@ -60,13 +60,16 @@ public class UserLoginController {
 
 	@RequestMapping("/login")
 	public String userLogin(@Validated userLoginForm form, BindingResult result, Model model) {
+		System.out.println(form.getName() +":"+ form.getPassword());
 		if (result.hasErrors()) {
 			return index();
 		}
 		String name = form.getName();
 		String password = form.getPassword();
 		List<User> userList = userRepository.findByNameAndPassword(name, password);
-		if (userList.get(0).getName() == name && userList.get(0).getPassword() == password) {
+		System.out.println(userList);
+		//String型の比較は==でやらない。
+		if (userList.get(0).getName().equals(name) && userList.get(0).getPassword().equals(password)) {
 			model.addAttribute("userList", userList);
 			return "/topView";
 		} else {
