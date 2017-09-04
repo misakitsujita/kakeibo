@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -20,13 +19,11 @@
 			action="${pageContext.request.contextPath}/userLogin/login">
 			<table class="table table-hover">
 				<tr>
-					<td class="center">名前 <form:errors path="name" cssStyle="color:red"
-							element="div"></form:errors></td>
+					<td class="center">名前 <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
 					<td class="center"><form:input path="name" /></td>
 				</tr>
 				<tr>
-					<td class="center">パスワード <form:errors path="password" cssStyle="color:red"
-							element="div"></form:errors></td>
+					<td class="center">パスワード <form:errors path="password" cssStyle="color:red" element="div"></form:errors></td>
 					<td class="center"><form:input path="password" /></td>
 				</tr>
 			</table>
@@ -41,13 +38,11 @@
 			<h2>新規登録</h2>
 			<table class="table table-hover">
 				<tr>
-					<td class="center">名前 <form:errors path="name" cssStyle="color:red"
-							element="div"></form:errors></td>
+					<td class="center">名前 <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
 					<td class="center"><form:input path="name" /></td>
 				</tr>
 				<tr>
-					<td class="center">パスワード <form:errors path="name" cssStyle="color:red"
-							element="div"></form:errors></td>
+					<td class="center">パスワード <form:errors path="password" cssStyle="color:red" element="div"></form:errors></td>
 					<td class="center"><form:input path="password" /></td>
 				</tr>
 			</table>
