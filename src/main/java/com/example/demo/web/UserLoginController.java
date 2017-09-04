@@ -98,4 +98,9 @@ public class UserLoginController {
 		// return "redirect:index";
 		return index();
 	}
+	
+	@RequestMapping("/update")
+	public String userUpdate(){
+		return "userUpdate";
+	}
 }

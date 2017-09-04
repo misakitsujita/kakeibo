@@ -34,7 +34,7 @@
 			<input type="submit" value="ログイン" class="btn btn-info">
 		</form:form>
 
-		<div></div>
+		<div class="space"></div>
 		
 		<form:form modelAttribute="userInsertForm"
 			action="${pageContext.request.contextPath}/userLogin/insert">
@@ -57,6 +57,10 @@
 				<c:out value="${message}"></c:out>
 			</div>
 		</form:form>
+		
+		<div class="space"></div>
+		
+		<a href="${pageContext.request.contextPath}/userLogin/update">パスワードをお忘れの方はこちら</a>
 	</div>
 </body>
 </html>
