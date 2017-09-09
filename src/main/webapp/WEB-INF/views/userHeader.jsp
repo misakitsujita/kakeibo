@@ -14,9 +14,9 @@
 <body>
 	<div id="header" align="left">
 		<span>こんにちは</span>
-		<c:out value="${userList.name}"></c:out>さん<br>
+		<%--今回はuserListを配列で取ってきているので0番目を指定してください --%>
+		<c:out value="${userList[0].name}"/>さん<br>
 		現在は<fmt:formatDate value="${date}" pattern="MM月dd日(E) HH時mm分" />です
 	</div>
-
 </body>
 </html>

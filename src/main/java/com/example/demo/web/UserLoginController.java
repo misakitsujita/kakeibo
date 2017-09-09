@@ -67,14 +67,12 @@ public class UserLoginController {
 		System.out.println("form" + name);
 		String password = form.getPassword();
 		List<User> userList = userRepository.findByNameAndPassword(name, password);
-		System.out.println("debug1");
-		System.out.println(userList.get(0).getName());
-		System.out.println(userList.get(0).getPassword());
+
 		if (!(userList.get(0).getName().equals(name))) {
-			result.rejectValue("name", null, "名前又はパスワードが一致してません");
+			result.rejectValue("name", null, "名前またはパスワードが一致していません");
 			return index();
 		} else if (!(userList.get(0).getPassword().equals(password))) {
-			result.rejectValue("password", null, "名前又はパスワードが一致してません");
+			result.rejectValue("password", null, "名前またはパスワードが一致していません");
 			return index();
 		} else {
 			model.addAttribute("userList", userList);
@@ -102,5 +100,10 @@ public class UserLoginController {
 		// redirect.addFlashAttribute("message", "登録が完了しました");
 		// return "redirect:index";
 		return index();
+	}
+	
+	@RequestMapping("/update")
+	public String userUpdate(){
+		return "userUpdate";
 	}
 }

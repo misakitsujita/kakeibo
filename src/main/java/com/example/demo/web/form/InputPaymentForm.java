@@ -22,5 +22,9 @@ public class InputPaymentForm {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
+	@Override
+	public String toString() {
+		return "InputPaymentForm [userId=" + userId + ", categoryId=" + categoryId + ", payment=" + payment + "]";
+	}
 	
 }
