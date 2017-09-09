@@ -22,7 +22,7 @@
 					<td><form:input path="name"/></td>
 				</tr>
 				<tr>
-					<td>パスワード  <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td>パスワード  <form:errors path="password" cssStyle="color:red" element="div"></form:errors></td>
 					<td><form:input path="password"/></td>
 				</tr>
 		</table>
@@ -37,7 +37,7 @@
 					<td><form:input path="name"/></td>
 				</tr>
 				<tr>
-					<td>パスワード  <form:errors path="name" cssStyle="color:red" element="div"></form:errors></td>
+					<td>パスワード  <form:errors path="password" cssStyle="color:red" element="div"></form:errors></td>
 					<td><form:input path="password"/></td>
 				</tr>
 		</table>

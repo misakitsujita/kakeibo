@@ -41,7 +41,7 @@ public class UserLoginController {
 	public userLoginForm setUpForm() {
 		return new userLoginForm();
 	}
-	
+
 	/**
 	 * フォーム初期化.
 	 * 
@@ -49,7 +49,7 @@ public class UserLoginController {
 	 */
 
 	@ModelAttribute
-	public userInsertForm setUpForm2(){
+	public userInsertForm setUpForm2() {
 		return new userInsertForm();
 	}
 
@@ -64,31 +64,43 @@ public class UserLoginController {
 			return index();
 		}
 		String name = form.getName();
+		System.out.println("form" + name);
 		String password = form.getPassword();
 		List<User> userList = userRepository.findByNameAndPassword(name, password);
-		if (userList.get(0).getName() == name && userList.get(0).getPassword() == password) {
-			model.addAttribute("userList", userList);
-			return "/topView";
-		} else {
+		System.out.println("debug1");
+		System.out.println(userList.get(0).getName());
+		System.out.println(userList.get(0).getPassword());
+		if (!(userList.get(0).getName().equals(name))) {
+			result.rejectValue("name", null, "名前又はパスワードが一致してません");
 			return index();
+		} else if (!(userList.get(0).getPassword().equals(password))) {
+			result.rejectValue("password", null, "名前又はパスワードが一致してません");
+			return index();
+		} else {
+			model.addAttribute("userList", userList);
+			System.out.println(userList + "ログイン");
+			return "/topView";
 		}
 	}
-	
+
 	@RequestMapping("/insert")
-	public String userInsert(@Validated userInsertForm form,BindingResult result, Model model,RedirectAttributes redirect){
+	public String userInsert(@Validated userInsertForm form, BindingResult result, Model model,
+			RedirectAttributes redirect) {
 		if (result.hasErrors()) {
 			return index();
 		}
 		User user = new User();
 		user.setName(form.getName());
 		user.setPassword(form.getPassword());
-		//TODO:すでに登録済みのユーザかチェック
-		//List<User> userList = userRepository.findByNameAndPassword(form.getName(), form.getPassword());
-		//user.setId(userList.get(0).getId());
+		// TODO:すでに登録済みのユーザかチェック
+		// List<User> userList =
+		// userRepository.findByNameAndPassword(form.getName(),
+		// form.getPassword());
+		// user.setId(userList.get(0).getId());
 		userRepository.saveUser(user);
 		model.addAttribute("message", "登録が完了しました");
-		//redirect.addFlashAttribute("message", "登録が完了しました");
-		//return "redirect:index";
+		// redirect.addFlashAttribute("message", "登録が完了しました");
+		// return "redirect:index";
 		return index();
 	}
 }

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ include file="userHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
 	<jsp:include page="userHeader.jsp">
 		<jsp:param value="${userList.name}" name="name" />
 	</jsp:include>
+
 <h1>家計簿トップ画面</h1>
 
 	<jsp:include page="userFooter.jsp" />
