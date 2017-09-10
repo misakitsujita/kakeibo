@@ -23,15 +23,17 @@ public class UserRepository {
 		user.setId(rs.getInt("id"));
 		user.setName(rs.getString("name"));
 		user.setPassword(rs.getString("password"));
+		user.setIncome(rs.getInt("income"));
 		return user;
 	};
 
 	/**
 	 * 全件検索を行う.
+	 * 
 	 * @return
 	 */
 	public List<User> findAll() {
-		String sql = "SELECT id,name,password FROM users ORDER BY id";
+		String sql = "SELECT id,name,password,income FROM users ORDER BY id";
 		List<User> userList = template.query(sql, USER_ROWMAPPER);
 		return userList;
 	}
@@ -44,7 +46,7 @@ public class UserRepository {
 	 * @return userList
 	 */
 	public List<User> load(Integer id) {
-		String sql = "SELECT id,name,password FROM users WHERE id = :id";
+		String sql = "SELECT id,name,password,income FROM users WHERE id = :id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		List<User> userList = template.query(sql, param, USER_ROWMAPPER);
 		return userList;
@@ -58,7 +60,7 @@ public class UserRepository {
 	 * @return
 	 */
 	public List<User> findByNameAndPassword(String name, String password) {
-		String sql = "SELECT id,name,password FROM users WHERE name = :name AND password=:password";
+		String sql = "SELECT id,name,password,income FROM users WHERE name = :name AND password=:password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name).addValue("password", password);
 		List<User> userList = template.query(sql, param, USER_ROWMAPPER);
 		return userList;
@@ -79,6 +81,15 @@ public class UserRepository {
 			SqlParameterSource param = new BeanPropertySqlParameterSource(user);
 			template.update(sql, param);
 		}
+	}
+
+	/**
+	 * 収入を登録
+	 */
+	public void saveIncome(User user) {
+		String sql = "UPDATE users SET income=:income WHERE id = :id";
+		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
+		template.update(sql, param);
 	}
 
 }

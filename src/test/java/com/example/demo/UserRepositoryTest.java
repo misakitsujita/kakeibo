@@ -18,15 +18,15 @@ public class UserRepositoryTest {
 	@Autowired
 	private UserRepository repository;
 
-	@Test
-	public void インサートアップデート検証() {
-		User user = new User();
-		user.setId(1);
-		user.setName("test");
-		user.setPassword("test");
-		repository.saveUser(user);
-		System.out.println("インサートアップデート検証 : " + user);
-	}
+//	@Test
+//	public void インサートアップデート検証() {
+//		User user = new User();
+//		user.setId(1);
+//		user.setName("test");
+//		user.setPassword("test");
+//		repository.saveUser(user);
+//		System.out.println("インサートアップデート検証 : " + user);
+//	}
 
 	@Test
 	public void ぜんけん検証() {
@@ -44,6 +44,15 @@ public class UserRepositoryTest {
 	public void ロード検証() {
 		List<User> userList = repository.load(1);
 		System.out.println("ロード : " + userList);
+	}
+	
+	@Test
+	public void 収入登録(){
+		User user = new User();
+		user.setId(1);
+		user.setIncome(170000);
+		repository.saveIncome(user);
+		System.out.println("収入登録 : " + user);
 	}
 
 }

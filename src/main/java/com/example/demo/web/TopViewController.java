@@ -20,5 +20,10 @@ public class TopViewController {
 		System.out.println("aaa");
 		return "topView";
 	}
+	
+//	@RequestMapping("/inserIncome")
+//	public String insertIncome(){
+//		return "topView";
+//	}
 
 }

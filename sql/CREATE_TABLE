@@ -1,0 +1,8 @@
+DROP TABLE users;
+CREATE TABLE users (id serial, name text NOT NULL, password text NOT NULL, income integer,PRIMARY KEY (id, name));
+
+CREATE TABLE admin_users (id serial, name text NOT NULL, password text NOT NULL,PRIMARY KEY (id, name));
+
+CREATE TABLE categories (id serial PRIMARY KEY, category text NOT NULL);
+
+CREATE TABLE payments (id serial PRIMARY KEY, user_id integer, category_id integer, payment integer NOT NULL, date date);

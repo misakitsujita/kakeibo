@@ -6,9 +6,12 @@
 <html>
 <head>
 <jsp:useBean id="date" class="java.util.Date" />
+<!-- CSS読み込み -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/headerAndFooter.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<!-- js読み込み -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/payment.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>家計簿</title>

@@ -11,9 +11,12 @@
 <div class="container" align="center">
 	<h1>家計簿トップ画面</h1>
 	
+	<input type="hidden" value="${pageContext.request.contextPath}" id="contextPath">
+	
 	<div align="left">
 	<p>収入</p>
-	<input type="text"> 円 / 月 <input type="submit" value="登録" class="btn btn-default btn-sm">
+	<input type="text" id="income"> 円 / 月 <input type="hidden" value="${userList[0].id}" id="id">
+	<input type="submit" value="登録" id="insertIncome" class="btn btn-default btn-sm">
 	
 	<div></div>
 	

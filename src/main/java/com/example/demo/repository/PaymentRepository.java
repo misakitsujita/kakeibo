@@ -88,7 +88,7 @@ public class PaymentRepository {
 					+ "VALUES(:userId,:categoryId,:payment,:date)";
 			template.update(insert,param);
 		}else{
-			String update = "UPDATE payments SET user_id=:userId,category_id=:categoryId,payment=:payment,date=:date";
+			String update = "UPDATE payments SET user_id=:userId,category_id=:categoryId,payment=:payment,date=:date WHERE id=:id";
 			template.update(update,param);
 		}
 	}
