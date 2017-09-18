@@ -23,7 +23,7 @@ public class PaymentRepository {
 		payment.setUserId(rs.getInt("user_id"));
 		payment.setCategoryId(rs.getInt("category_id"));
 		payment.setPayment(rs.getInt("payment"));
-		payment.setDate(rs.getString("date"));
+		payment.setDate(rs.getString("date")); //TODO:date型で管理できるように
 		return payment;
 	};
 

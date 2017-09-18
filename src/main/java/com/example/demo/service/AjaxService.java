@@ -34,11 +34,11 @@ public class AjaxService {
 	 * 
 	 * @return
 	 */
+	//TODO:date型で管理できるように
 	public Payment jsonToPayment(String json) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Payment payment = mapper.readValue(json, Payment.class);
-			System.out.println(payment);
 			return payment;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -57,7 +57,6 @@ public class AjaxService {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			json = mapper.writeValueAsString(list);
-			System.out.println("一覧 : " + json);
 			return json;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -76,7 +75,6 @@ public class AjaxService {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			jsonUser = mapper.writeValueAsString(user);
-			System.out.println(jsonUser);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

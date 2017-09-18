@@ -30,10 +30,9 @@ $(function(){
 	$('#insertPayment').on('click',function(){
 		var data = {
 				"userId" :$('#id').val(),
-				//"id" :$('#id').val()
 				"categoryId" :$('#selectBox').val(),
 				"payment" :$('#payment').val(),
-				"date" :$('#datepicker').val()
+				"date" :$('#datepicker').val() //TODO:date型で管理できるように
 		};
 		console.log(JSON.stringify(data));
 		$.ajax({
