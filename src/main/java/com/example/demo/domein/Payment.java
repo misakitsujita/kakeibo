@@ -1,6 +1,5 @@
 package com.example.demo.domein;
 
-import java.util.Date;
 
 public class Payment {
 	
@@ -12,7 +11,7 @@ public class Payment {
 	
 	private Integer payment;
 	
-	private Date date;
+	private String date;
 
 	public Integer getId() {
 		return id;
@@ -46,11 +45,11 @@ public class Payment {
 		this.payment = payment;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

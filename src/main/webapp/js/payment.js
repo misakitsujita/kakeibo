@@ -30,15 +30,15 @@ $(function(){
 		var data = {
 				"userId" :$('#id').val(),
 				//"id" :$('#id').val()
-				"categoryId" :$().val(),
+				"categoryId" :$('#selectBox').val(),
 				"payment" :$('#payment').val(),
-				"date" :$().val()
+				"date" :$('#datepicker').val()
 		};
 		console.log(JSON.stringify(data));
 		$.ajax({
 			url:$('#contextPath').val()+'/ajax/insertPayment',
 			type:'GET',
-			data: {jsonUser:JSON.stringify(data)},
+			data: {jsonPayment:JSON.stringify(data)},
 			contentType: 'application/JSON',
 		    success: function(data){
 		    	console.log("成功");

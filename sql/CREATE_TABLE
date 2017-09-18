@@ -5,4 +5,5 @@ CREATE TABLE admin_users (id serial, name text NOT NULL, password text NOT NULL,
 
 CREATE TABLE categories (id serial PRIMARY KEY, category text NOT NULL);
 
-CREATE TABLE payments (id serial PRIMARY KEY, user_id integer, category_id integer, payment integer NOT NULL, date date);
+DROP TABLE payments;
+CREATE TABLE payments (id serial PRIMARY KEY, user_id integer, category_id integer, payment integer NOT NULL, date text);

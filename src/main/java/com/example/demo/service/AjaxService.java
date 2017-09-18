@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.domein.Payment;
 import com.example.demo.domein.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -37,6 +38,7 @@ public class AjaxService {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Payment payment = mapper.readValue(json, Payment.class);
+			System.out.println(payment);
 			return payment;
 		} catch (IOException e) {
 			e.printStackTrace();
