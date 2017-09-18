@@ -33,6 +33,16 @@
 	<input type="submit" value="登録" id="insertPayment" class="btn btn-default btn-sm">
 	</div>
 	
+	<table id="paymentTable" class="table table-hover">
+		<thead id="head">
+			<tr>
+				<th>日付</th>
+				<th>カテゴリー</th>
+				<th>値段</th>
+			</tr>
+		</thead>
+	</table>
+	
 	
 </div>
 	<jsp:include page="userFooter.jsp" />

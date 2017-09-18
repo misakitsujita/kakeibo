@@ -45,5 +45,17 @@ public class AjaxController {
 	public void paymentInsert(String jsonPayment){
 		paymentRepository.savePayment(service.jsonToPayment(jsonPayment));
 	}
+	
+	/**
+	 * 支出一覧リストをJson型で返す.
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/paymentFindAll")
+	@ResponseBody
+	public String paymentFindAll(Integer userId){
+		System.out.println("userId : " + userId);
+		return service.paymenrToJson(paymentRepository.findByUserId(userId));
+	}
 
 }

@@ -4,6 +4,7 @@
 $(function(){
 	
 	$(document).ready(function(){
+		paymentView();
 		console.log($("#contextPath").val());
 	});
 	
@@ -51,5 +52,29 @@ $(function(){
 	$("#datepicker").datepicker("option", "showOn", 'both');
     $("#datepicker").datepicker("option", "buttonImageOnly", true);
     $("#datepicker").datepicker("option", "buttonImage", $("#contextPath").val() + '/css/calendar.png');
-	
+    
+    
+    //支出一覧を表示
+    function paymentView(json){
+		$.ajax({
+			url:$('#contextPath').val() + '/ajax/paymentFindAll?userId=' + $('#id').val(),
+			type:'GET',
+			dataType:'json',
+			success: function(json){
+ 				var Html = "";
+				$.each(json, function(i){
+					var payments = json[i];
+					console.log(payments);
+					Html += "<tbody>"
+	 				Html += "<tr>"
+	 				Html += "<td>" + payments.date + "</td>"
+	 				Html += "<td>" + payments.categoryId + "</td>"
+	 				Html += "<td>" + payments.payment + "</td>"
+	 				Html += "</tr>"
+	 					Html += "</tbody>"
+					$('#paymentTable').append(Html);
+				});
+			}
+		});
+	}
 });

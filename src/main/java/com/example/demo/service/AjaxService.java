@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domein.Payment;
 import com.example.demo.domein.User;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -45,7 +45,25 @@ public class AjaxService {
 		}
 		return jsonToPayment(json);
 	}
+	
+	/**
+	 * List<Payment>→JSON文字列
+	 * 
+	 * @return
+	 */
 
+	public String paymenrToJson(List<Payment> list) {
+		String json = null;
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			json = mapper.writeValueAsString(list);
+			System.out.println("一覧 : " + json);
+			return json;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "json";
+	}
 
 	/**
 	 * Userオブジェクト→JSON文字列
