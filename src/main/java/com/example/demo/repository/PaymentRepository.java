@@ -79,18 +79,22 @@ public class PaymentRepository {
 		List<Payment> paymentList = template.query(sql, param, PAYMENT_ROWMAPPER);
 		return paymentList;
 	}
-	
-	public void save(Payment payment){
-		SqlParameterSource param = new BeanPropertySqlParameterSource(payment);
-		
-		if(payment.getId()==null){
-			String insert = "INSERT INTO payments(user_id,category_id,payment,date) "
-					+ "VALUES(:userId,:categoryId,:payment,:date)";
-			template.update(insert,param);
-		}else{
-			String update = "UPDATE payments SET user_id=:userId,category_id=:categoryId,payment=:payment,date=:date WHERE id=:id";
-			template.update(update,param);
-		}
-	}
 
+	/**
+	 * 支出登録.
+	 * 
+	 * @param payment
+	 */
+	public void savePayment(Payment payment) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(payment);
+		// if(payment.getId()==null){
+		String insert = "INSERT INTO payments(user_id,category_id,payment,date) VALUES(:userId,:categoryId,:payment,:date)";
+		template.update(insert, param);
+		// }else{
+		// String update = "UPDATE payments SET
+		// user_id=:userId,category_id=:categoryId,payment=:payment,date=:date
+		// WHERE id=:id";
+		// template.update(update,param);
+		// }
+	}
 }

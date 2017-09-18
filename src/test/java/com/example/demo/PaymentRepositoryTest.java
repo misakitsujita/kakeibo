@@ -17,28 +17,28 @@ public class PaymentRepositoryTest {
 	@Autowired
 	PaymentRepository paymentRepository;
 
-	@Test
-	public void insertTest() {
-		Payment payment = new Payment();
-		payment.setUserId(1);
-		payment.setCategoryId(1);
-		payment.setPayment(1000);
-		Date date = new Date();
-		payment.setDate(date);
-		paymentRepository.save(payment);
-	}
-
-	@Test
-	public void updateTest() {
-		Payment payment = new Payment();
-		payment.setId(1);
-		payment.setUserId(2);
-		payment.setCategoryId(2);
-		payment.setPayment(2000);
-		Date date = new Date();
-		payment.setDate(date);
-		paymentRepository.save(payment);
-	}
+//	@Test
+//	public void insertTest() {
+//		Payment payment = new Payment();
+//		payment.setUserId(1);
+//		payment.setCategoryId(1);
+//		payment.setPayment(1000);
+//		Date date = new Date();
+//		payment.setDate(date);
+//		paymentRepository.save(payment);
+//	}
+//
+//	@Test
+//	public void updateTest() {
+//		Payment payment = new Payment();
+//		payment.setId(1);
+//		payment.setUserId(2);
+//		payment.setCategoryId(2);
+//		payment.setPayment(2000);
+//		Date date = new Date();
+//		payment.setDate(date);
+//		paymentRepository.save(payment);
+//	}
 
 	@Test
 	public void loadTest() {

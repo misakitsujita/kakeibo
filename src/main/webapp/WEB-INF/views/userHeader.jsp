@@ -8,9 +8,14 @@
 <jsp:useBean id="date" class="java.util.Date" />
 <!-- CSS読み込み -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/headerAndFooter.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-<!-- js読み込み -->
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/cupertino/jquery-ui.css" >
+<!-- jQuery読み込み -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<!-- jsファイル読み込み -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/payment.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

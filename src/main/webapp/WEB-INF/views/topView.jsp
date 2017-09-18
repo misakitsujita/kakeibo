@@ -23,13 +23,14 @@
 	<p>支出</p>
 	<form action="">
 	<select class="form-control selectpicker" style="width:150px;">
-	<option value="飲み代">飲み代</option>
-	<option value="食費">食費</option>
-	<option value="生活費">生活費</option>
-	<option value="交通費">交通費</option>
+	<option value="1" class="selectBox">飲み代</option>
+	<option value="2" class="selectBox">食費</option>
+	<option value="3" class="selectBox">生活費</option>
+	<option value="4" class="selectBox">交通費</option>
 	</select>
 	</form>
-	<input type="text"> 円 <input type="submit" value="登録" class="btn btn-default btn-sm">
+	<input type="text" id="payment"> 円 / 日付 <input type="text" id="datepicker">
+	<input type="submit" value="登録" id="insertPayment" class="btn btn-default btn-sm">
 	</div>
 	
 	

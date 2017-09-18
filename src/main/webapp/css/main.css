@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+img.ui-datepicker-trigger{
+  cursor: pointer;
+  margin-left: 5px!important;
+}
