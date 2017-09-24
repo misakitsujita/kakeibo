@@ -23,17 +23,28 @@ public class PaymentRepository {
 		payment.setUserId(rs.getInt("user_id"));
 		payment.setCategoryId(rs.getInt("category_id"));
 		payment.setPayment(rs.getInt("payment"));
-		payment.setDate(rs.getString("date")); //TODO:date型で管理できるように
+		payment.setDate(rs.getString("date")); // TODO:date型で管理できるように
 		return payment;
 	};
-	
+
 	/**
 	 * 支出一覧表示（join）用
 	 */
 	private final static RowMapper<Payment> PAYMENTLIST_ROWMAPPER = (rs, i) -> {
 		Payment payment = new Payment();
 		payment.setPayment(rs.getInt("payment"));
-		payment.setDate(rs.getString("date")); //TODO:date型で管理できるように
+		payment.setDate(rs.getString("date")); // TODO:date型で管理できるように
+		payment.setCategory(rs.getString("category"));
+		return payment;
+
+	};
+	
+	/**
+	 * 支出一覧表示（join）用
+	 */
+	private final static RowMapper<Payment> CATEGORY_GRAPH_ROWMAPPER = (rs, i) -> {
+		Payment payment = new Payment();
+		payment.setSum(rs.getInt("sum"));
 		payment.setCategory(rs.getString("category"));
 		return payment;
 
@@ -77,14 +88,28 @@ public class PaymentRepository {
 		List<Payment> paymentList = template.query(sql, param, PAYMENTLIST_ROWMAPPER);
 		return paymentList;
 	}
-//	public List<Payment> findByUserId(Integer userId) {
-//		String sql = "SELECT id,user_id,category_id,payment,date FROM payments WHERE user_id = :userId";
-//		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-//		List<Payment> paymentList = template.query(sql, param, PAYMENT_ROWMAPPER);
-//		return paymentList;
-//	}
-	
-	
+	// public List<Payment> findByUserId(Integer userId) {
+	// String sql = "SELECT id,user_id,category_id,payment,date FROM payments
+	// WHERE user_id = :userId";
+	// SqlParameterSource param = new MapSqlParameterSource().addValue("userId",
+	// userId);
+	// List<Payment> paymentList = template.query(sql, param,
+	// PAYMENT_ROWMAPPER);
+	// return paymentList;
+	// }
+
+	/**
+	 * カテゴリー別に支出合計を検索.
+	 * @param userId
+	 * @return　リスト
+	 */
+	public List<Payment> findBySumAndCategory(Integer userId) {
+		String sql = "SELECT SUM(payment),category FROM payments INNER JOIN categories ON payments.category_id=categories.id "
+				+ " WHERE user_id = :userId GROUP BY category ORDER BY category";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<Payment> paymentList = template.query(sql, param, CATEGORY_GRAPH_ROWMAPPER);
+		return paymentList;
+	}
 
 	/**
 	 * カテゴリ別検索.

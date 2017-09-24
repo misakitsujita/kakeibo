@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <jsp:useBean id="date" class="java.util.Date" />
 <!-- CSS読み込み -->
@@ -15,10 +15,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script> -->
 <!-- jsファイル読み込み -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/payment.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/chart.js"></script> --%>
+<meta charset="UTF-8">
 <title>家計簿</title>
 </head>
 <body>

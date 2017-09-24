@@ -43,6 +43,7 @@
 		</thead>
 	</table>
 	
+	<a href="${pageContext.request.contextPath}/top/viewGraph?userId=${userList[0].id}">グラフを見る</a>	
 	
 </div>
 	<jsp:include page="userFooter.jsp" />

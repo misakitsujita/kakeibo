@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,5 +59,11 @@ public class PaymentRepositoryTest {
 	@Test
 	public void findByCategoryIdTest() {
 		System.out.println(paymentRepository.findByCategoryId(1));
+	}
+	
+	@Test
+	public void findBySumAndCategory() {
+		List<Payment> list = paymentRepository.findBySumAndCategory(1);
+		System.out.println("合計 : " + list.get(0).getSum() + " : " + list.get(0).getCategory());
 	}
 }

@@ -17,7 +17,7 @@ public class AjaxController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private PaymentRepository paymentRepository;
 
@@ -34,7 +34,7 @@ public class AjaxController {
 	public void userInsert(String jsonUser) {
 		userRepository.saveIncome(service.jsonToUser(jsonUser));
 	}
-	
+
 	/**
 	 * JsonでPaymentを受け取り支出を登録する.
 	 * 
@@ -42,10 +42,10 @@ public class AjaxController {
 	 */
 	@RequestMapping("/insertPayment")
 	@ResponseBody
-	public void paymentInsert(String jsonPayment){
+	public void paymentInsert(String jsonPayment) {
 		paymentRepository.savePayment(service.jsonToPayment(jsonPayment));
 	}
-	
+
 	/**
 	 * 支出一覧リストをJson型で返す.
 	 * 
@@ -53,9 +53,21 @@ public class AjaxController {
 	 */
 	@RequestMapping("/paymentFindAll")
 	@ResponseBody
-	public String paymentFindAll(Integer userId){
+	public String paymentFindAll(Integer userId) {
 		System.out.println("userId : " + userId);
 		return service.paymenrToJson(paymentRepository.findByUserId(userId));
 	}
+
+	/**
+	 * カテゴリー別支出合計リストをJson型で返す.
+	 * 
+	 * @param userId
+	 * @return
+	 */
+//	@RequestMapping("/categoryGraph")
+//	@ResponseBody
+//	public String showCategoryGraph(Integer userId) {
+//		return service.paymenrToJson(paymentRepository.findBySumAndCategory(userId));
+//	}
 
 }
