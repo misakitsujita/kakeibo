@@ -63,11 +63,11 @@ $(function(){
  				var Html = "";
 				$.each(json, function(i){
 					var payments = json[i];
-					console.log(payments);
+					//console.log(payments);
 					Html += "<tbody>"
 	 				Html += "<tr>"
 	 				Html += "<td>" + payments.date + "</td>"
-	 				Html += "<td>" + payments.categoryId + "</td>"
+	 				Html += "<td>" + payments.category + "</td>"
 	 				Html += "<td>" + payments.payment + "</td>"
 	 				Html += "</tr>"
 	 					Html += "</tbody>"

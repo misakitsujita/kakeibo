@@ -26,6 +26,18 @@ public class PaymentRepository {
 		payment.setDate(rs.getString("date")); //TODO:date型で管理できるように
 		return payment;
 	};
+	
+	/**
+	 * 支出一覧表示（join）用
+	 */
+	private final static RowMapper<Payment> PAYMENTLIST_ROWMAPPER = (rs, i) -> {
+		Payment payment = new Payment();
+		payment.setPayment(rs.getInt("payment"));
+		payment.setDate(rs.getString("date")); //TODO:date型で管理できるように
+		payment.setCategory(rs.getString("category"));
+		return payment;
+
+	};
 
 	/**
 	 * 主キー検索.
@@ -60,11 +72,19 @@ public class PaymentRepository {
 	 * @return 検索結果 複数件
 	 */
 	public List<Payment> findByUserId(Integer userId) {
-		String sql = "SELECT id,user_id,category_id,payment,date FROM payments WHERE user_id = :userId";
+		String sql = "SELECT date,category,payment from payments INNER JOIN categories ON payments.category_id=categories.id WHERE user_id = :userId ORDER BY date DESC";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
-		List<Payment> paymentList = template.query(sql, param, PAYMENT_ROWMAPPER);
+		List<Payment> paymentList = template.query(sql, param, PAYMENTLIST_ROWMAPPER);
 		return paymentList;
 	}
+//	public List<Payment> findByUserId(Integer userId) {
+//		String sql = "SELECT id,user_id,category_id,payment,date FROM payments WHERE user_id = :userId";
+//		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+//		List<Payment> paymentList = template.query(sql, param, PAYMENT_ROWMAPPER);
+//		return paymentList;
+//	}
+	
+	
 
 	/**
 	 * カテゴリ別検索.

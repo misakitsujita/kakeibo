@@ -12,6 +12,18 @@ public class Payment {
 	private Integer payment;
 	
 	private String date;
+	
+	private String category;
+	
+	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public Integer getId() {
 		return id;
