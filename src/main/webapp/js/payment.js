@@ -41,6 +41,10 @@ $(function(){
 			data: {jsonPayment:JSON.stringify(data)},
 			contentType: 'application/JSON',
 		    success: function(data){
+		    	//textBoxリセット
+		    	$('#payment').val("");
+		    	$('#datepicker').val("");
+		    	//一覧再描画
 		    	removeTbody();
 		    	paymentView();
 		    	console.log("成功");
@@ -69,11 +73,11 @@ $(function(){
 			success: function(json){
 				for(var i in json){
 					let date = json[i].date;
-					console.log(date);
+					//console.log(date);
 					let category = json[i].category;
-					console.log(category);
+					//console.log(category);
 					let payment = json[i].payment;
-					console.log(payment);
+					//console.log(payment);
 					
 					let Html = "";
 						Html += "<tbody class=\"tbody\">"

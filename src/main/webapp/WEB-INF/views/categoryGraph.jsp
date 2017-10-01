@@ -35,7 +35,7 @@
 		});
 		console.log(sum);
 
-		//棒グラフ
+		//円グラフ
 		var ctx = document.getElementById("canvas");
 		var canvas = new Chart(ctx, {
 		  //グラフの種類
@@ -63,6 +63,9 @@
 	</script>
 
 <canvas id="canvas"></canvas>
+<div></div>
+
+<a href="${pageContext.request.contextPath}/top/index?userId=${userList[0].id}">戻る</a>
 
 </body>
 </html>
