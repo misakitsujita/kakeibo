@@ -1,5 +1,6 @@
 package com.example.demo.domein;
 
+import java.sql.Date;
 
 public class Payment {
 	
@@ -11,7 +12,7 @@ public class Payment {
 	
 	private Integer payment;
 	
-	private String date;
+	private Date date;
 	
 	private String category;
 	
@@ -65,11 +66,11 @@ public class Payment {
 		this.payment = payment;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

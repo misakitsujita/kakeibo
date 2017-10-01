@@ -41,6 +41,8 @@ $(function(){
 			data: {jsonPayment:JSON.stringify(data)},
 			contentType: 'application/JSON',
 		    success: function(data){
+		    	$('.tbody').remove();
+		    	paymentView();
 		    	console.log("成功");
 		   	}
 		});
@@ -49,6 +51,7 @@ $(function(){
 	//カレンダーの表示
 	$("#datepicker").datepicker();
 	$("#datepicker").datepicker("option", "showOn", 'both');
+	$("#datepicker").datepicker("option", "dateFormat", 'yy-mm-dd');
     $("#datepicker").datepicker("option", "buttonImageOnly", true);
     $("#datepicker").datepicker("option", "buttonImage", $("#contextPath").val() + '/css/calendar.png');
     
@@ -64,13 +67,13 @@ $(function(){
 				$.each(json, function(i){
 					var payments = json[i];
 					//console.log(payments);
-					Html += "<tbody>"
+					Html += "<tbody class=\"tbody\">"
 	 				Html += "<tr>"
 	 				Html += "<td>" + payments.date + "</td>"
 	 				Html += "<td>" + payments.category + "</td>"
 	 				Html += "<td>" + payments.payment + "</td>"
 	 				Html += "</tr>"
-	 					Html += "</tbody>"
+	 				Html += "</tbody>"
 					$('#paymentTable').append(Html);
 				});
 			}

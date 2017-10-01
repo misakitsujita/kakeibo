@@ -57,6 +57,7 @@ public class AjaxService {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			json = mapper.writeValueAsString(list);
+			System.out.println(json);
 			return json;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

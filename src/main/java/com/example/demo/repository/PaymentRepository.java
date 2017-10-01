@@ -23,7 +23,7 @@ public class PaymentRepository {
 		payment.setUserId(rs.getInt("user_id"));
 		payment.setCategoryId(rs.getInt("category_id"));
 		payment.setPayment(rs.getInt("payment"));
-		payment.setDate(rs.getString("date")); // TODO:date型で管理できるように
+		payment.setDate(rs.getDate("date"));
 		return payment;
 	};
 
@@ -33,7 +33,7 @@ public class PaymentRepository {
 	private final static RowMapper<Payment> PAYMENTLIST_ROWMAPPER = (rs, i) -> {
 		Payment payment = new Payment();
 		payment.setPayment(rs.getInt("payment"));
-		payment.setDate(rs.getString("date")); // TODO:date型で管理できるように
+		payment.setDate(rs.getDate("date"));
 		payment.setCategory(rs.getString("category"));
 		return payment;
 

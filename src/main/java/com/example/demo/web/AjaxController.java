@@ -1,11 +1,14 @@
 package com.example.demo.web;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.domein.Payment;
 import com.example.demo.repository.PaymentRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.AjaxService;
@@ -42,8 +45,14 @@ public class AjaxController {
 	 */
 	@RequestMapping("/insertPayment")
 	@ResponseBody
-	public void paymentInsert(String jsonPayment) {
-		paymentRepository.savePayment(service.jsonToPayment(jsonPayment));
+	public String paymentInsert(String jsonPayment) {
+		System.out.println("jsonPayment : " + jsonPayment);
+		Payment payment = service.jsonToPayment(jsonPayment);
+//		Date date = payment.getDate();
+//		payment.setDate(date);
+		System.out.println(payment);
+		paymentRepository.savePayment(payment);
+		return jsonPayment;
 	}
 
 	/**
@@ -64,10 +73,11 @@ public class AjaxController {
 	 * @param userId
 	 * @return
 	 */
-//	@RequestMapping("/categoryGraph")
-//	@ResponseBody
-//	public String showCategoryGraph(Integer userId) {
-//		return service.paymenrToJson(paymentRepository.findBySumAndCategory(userId));
-//	}
+	// @RequestMapping("/categoryGraph")
+	// @ResponseBody
+	// public String showCategoryGraph(Integer userId) {
+	// return
+	// service.paymenrToJson(paymentRepository.findBySumAndCategory(userId));
+	// }
 
 }
