@@ -21,6 +21,7 @@ $(function(){
 			data: {jsonUser:JSON.stringify(data)},
 			contentType: 'application/JSON',
 		    success: function(data){
+		    	$('#income').val("");
 		    	console.log("成功");
 		   	}
 		});

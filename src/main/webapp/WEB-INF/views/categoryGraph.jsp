@@ -46,12 +46,15 @@
 		      labels: category,
 		      //データセット
 		      datasets: [{
-		          //凡例
-		          label: "数量",
 		          //背景色
-		          backgroundColor: "rgba(75,192,192,0.4)",
+		          backgroundColor: [
+		        	  "#FFCE56",
+		              "#36A2EB",
+		              "#FF6384",
+		              "#33CC99"
+		          ],
 		          //枠線の色
-		          borderColor: "rgba(75,192,192,1)",
+		          borderColor: "#EEFFFF",
 		          //グラフのデータ
 		          data: sum
 		      }]
