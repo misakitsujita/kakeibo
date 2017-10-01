@@ -32,7 +32,7 @@ $(function(){
 				"userId" :$('#id').val(),
 				"categoryId" :$('#selectBox').val(),
 				"payment" :$('#payment').val(),
-				"date" :$('#datepicker').val() //TODO:date型で管理できるように
+				"date" :$('#datepicker').val()
 		};
 		console.log(JSON.stringify(data));
 		$.ajax({
@@ -41,7 +41,7 @@ $(function(){
 			data: {jsonPayment:JSON.stringify(data)},
 			contentType: 'application/JSON',
 		    success: function(data){
-		    	$('.tbody').remove();
+		    	removeTbody();
 		    	paymentView();
 		    	console.log("成功");
 		   	}
@@ -55,27 +55,36 @@ $(function(){
     $("#datepicker").datepicker("option", "buttonImageOnly", true);
     $("#datepicker").datepicker("option", "buttonImage", $("#contextPath").val() + '/css/calendar.png');
     
+    function removeTbody(){
+    	$(".tbody").remove();
+    }
     
     //支出一覧を表示
-    function paymentView(json){
+    function paymentView(){
+    	//removeTbody();
 		$.ajax({
 			url:$('#contextPath').val() + '/ajax/paymentFindAll?userId=' + $('#id').val(),
 			type:'GET',
 			dataType:'json',
 			success: function(json){
- 				var Html = "";
-				$.each(json, function(i){
-					var payments = json[i];
-					//console.log(payments);
-					Html += "<tbody class=\"tbody\">"
-	 				Html += "<tr>"
-	 				Html += "<td>" + payments.date + "</td>"
-	 				Html += "<td>" + payments.category + "</td>"
-	 				Html += "<td>" + payments.payment + "</td>"
-	 				Html += "</tr>"
-	 				Html += "</tbody>"
-					$('#paymentTable').append(Html);
-				});
+				for(var i in json){
+					let date = json[i].date;
+					console.log(date);
+					let category = json[i].category;
+					console.log(category);
+					let payment = json[i].payment;
+					console.log(payment);
+					
+					let Html = "";
+						Html += "<tbody class=\"tbody\">"
+		 				Html += "<tr>"
+		 				Html += "<td>" + date + "</td>"
+		 				Html += "<td>" + category + "</td>"
+		 				Html += "<td>" + payment + "</td>"
+		 				Html += "</tr>"
+		 				Html += "</tbody>"
+						$('#paymentTable').append(Html);
+				}
 			}
 		});
 	}

@@ -40,7 +40,7 @@ public class PaymentRepository {
 	};
 	
 	/**
-	 * 支出一覧表示（join）用
+	 * グラフ表示用
 	 */
 	private final static RowMapper<Payment> CATEGORY_GRAPH_ROWMAPPER = (rs, i) -> {
 		Payment payment = new Payment();

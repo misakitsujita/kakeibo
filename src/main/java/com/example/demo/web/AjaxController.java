@@ -1,6 +1,5 @@
 package com.example.demo.web;
 
-import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,11 +45,7 @@ public class AjaxController {
 	@RequestMapping("/insertPayment")
 	@ResponseBody
 	public String paymentInsert(String jsonPayment) {
-		System.out.println("jsonPayment : " + jsonPayment);
 		Payment payment = service.jsonToPayment(jsonPayment);
-//		Date date = payment.getDate();
-//		payment.setDate(date);
-		System.out.println(payment);
 		paymentRepository.savePayment(payment);
 		return jsonPayment;
 	}
@@ -63,7 +58,7 @@ public class AjaxController {
 	@RequestMapping("/paymentFindAll")
 	@ResponseBody
 	public String paymentFindAll(Integer userId) {
-		System.out.println("userId : " + userId);
+		//String json = service.paymenrToJson(paymentRepository.findByUserId(userId));
 		return service.paymenrToJson(paymentRepository.findByUserId(userId));
 	}
 

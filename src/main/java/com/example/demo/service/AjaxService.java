@@ -62,7 +62,7 @@ public class AjaxService {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return "json";
+		return null;
 	}
 
 	/**
