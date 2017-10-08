@@ -40,7 +40,7 @@ public class PaymentRepository {
 	};
 	
 	/**
-	 * グラフ表示用
+	 * ケテゴリーグラフ表示用
 	 */
 	private final static RowMapper<Payment> CATEGORY_GRAPH_ROWMAPPER = (rs, i) -> {
 		Payment payment = new Payment();
@@ -48,6 +48,16 @@ public class PaymentRepository {
 		payment.setCategory(rs.getString("category"));
 		return payment;
 
+	};
+	
+	/**
+	 * 収支グラフ表示用
+	 */
+	private final static RowMapper<Payment> BALANCE_OF_PAYMENTS_GRAPH_ROWMAPPER = (rs, i) -> {
+		Payment payment = new Payment();
+		payment.setSum(rs.getInt("sum"));
+		payment.setIncome(rs.getInt("income"));
+		return payment;
 	};
 
 	/**
@@ -108,6 +118,18 @@ public class PaymentRepository {
 				+ " WHERE user_id = :userId GROUP BY category ORDER BY category";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		List<Payment> paymentList = template.query(sql, param, CATEGORY_GRAPH_ROWMAPPER);
+		return paymentList;
+	}
+	
+	/**
+	 * 収支を検索.
+	 * @param userId
+	 * @return　リスト
+	 */
+	public List<Payment> findBalanceOfPayments(Integer userId) {
+		String sql = "SELECT SUM(payment),income FROM payments INNER JOIN users ON payments.user_id=users.id WHERE user_id = :userId GROUP BY income";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		List<Payment> paymentList = template.query(sql, param, BALANCE_OF_PAYMENTS_GRAPH_ROWMAPPER);
 		return paymentList;
 	}
 

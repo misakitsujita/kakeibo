@@ -37,6 +37,9 @@ public class TopViewController {
 		List<Payment> paymentList = paymentRepository.findBySumAndCategory(userId);
 		model.addAttribute("paymentList",paymentList);
 		
+		List<Payment> paymentAndIncomeList = paymentRepository.findBalanceOfPayments(userId);
+		model.addAttribute("paymentAndIncomeList", paymentAndIncomeList);
+		
 		List<User> userList = userRepository.load(userId);
 		model.addAttribute("userList",userList);
 		return "categoryGraph";

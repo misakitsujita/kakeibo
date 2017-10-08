@@ -18,9 +18,15 @@
 		<p class="category" style="display: none">${list.category}</p>
 		<p class="sum" style="display: none">${list.sum}</p>
 	</c:forEach>
+	
+	<c:forEach var="paymentAndIncomeList" items="${paymentAndIncomeList}">
+		<p class="income" style="display: none">${paymentAndIncomeList.income}</p>
+		<p class="payment" style="display: none">${paymentAndIncomeList.sum}</p>
+	</c:forEach>
 
 	<script type="text/javascript">
 	
+	//カテゴリー別グラフ
 	$(function() {
     	var category=new Array();
 		var sum=new Array();
@@ -62,10 +68,50 @@
 		});
 	});
 	
+	//収支グラフ
+ 	$(function() {
+    	var income=new Array();
+		var payment=new Array();
+
+		$(".income").each(function (index) {
+			income.push($(this).text());
+		});
+		console.log(income);
+
+		$(".payment").each(function (index) {
+			payment.push($(this).text());
+		});
+		console.log(payment);
+
+		//円グラフ
+		var ctx = document.getElementById("canvas2");
+		var canvas = new Chart(ctx, {
+		  //グラフの種類
+		  type: 'doughnut',
+		  //データの設定
+		  data: {
+		      //データ項目のラベル
+		      labels: ["収入","支出"],
+		      //データセット
+		      datasets: [{
+		          //背景色
+		          backgroundColor: [
+		        	  "#0000EE",
+		              "#EE0000"
+		          ],
+		          //枠線の色
+		          borderColor: "#EEFFFF",
+		          //グラフのデータ
+		          data: [income,payment]
+		      }]
+		  }
+		});
+	}); 
 	
 	</script>
 
 <canvas id="canvas"></canvas>
+<canvas id="canvas2"></canvas>
 <div></div>
 
 <a href="${pageContext.request.contextPath}/top/index?userId=${userList[0].id}">戻る</a>

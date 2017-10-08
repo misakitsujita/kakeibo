@@ -10,13 +10,29 @@ public class Payment {
 	
 	private Integer categoryId;
 	
+	/** 支出 */
 	private Integer payment;
 	
+	/** 日付 */
 	private Date date;
 	
+	/** カテゴリー */
 	private String category;
 	
+	/** 支出合計 */
 	private Integer sum;
+	
+	/** 収入 */
+	private Integer income;
+	
+
+	public Integer getIncome() {
+		return income;
+	}
+
+	public void setIncome(Integer income) {
+		this.income = income;
+	}
 
 	public Integer getSum() {
 		return sum;
@@ -77,11 +93,7 @@ public class Payment {
 	@Override
 	public String toString() {
 		return "Payment [id=" + id + ", userId=" + userId + ", categoryId=" + categoryId + ", payment=" + payment
-				+ ", date=" + date + "]";
-	}
-	
-	
-	
-	
+				+ ", date=" + date + ", category=" + category + ", sum=" + sum + ", income=" + income + "]";
+	}	
 
 }

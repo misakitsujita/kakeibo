@@ -34,7 +34,6 @@ public class AjaxService {
 	 * 
 	 * @return
 	 */
-	//TODO:date型で管理できるように
 	public Payment jsonToPayment(String json) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
