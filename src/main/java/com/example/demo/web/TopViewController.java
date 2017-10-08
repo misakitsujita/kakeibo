@@ -27,7 +27,6 @@ public class TopViewController {
 	
 	@RequestMapping("/index")
 	public String index(@RequestParam Integer userId, Model model){
-		System.out.println("userId : " + userId);
 		List<User> userList = userRepository.load(userId);
 		model.addAttribute("userList",userList);
 		return "topView";

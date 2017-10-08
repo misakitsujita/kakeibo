@@ -21,6 +21,7 @@ $(function(){
 			data: {jsonUser:JSON.stringify(data)},
 			contentType: 'application/JSON',
 		    success: function(data){
+		    	//textBoxリセット
 		    	$('#income').val("");
 		    	console.log("成功");
 		   	}
@@ -60,6 +61,7 @@ $(function(){
     $("#datepicker").datepicker("option", "buttonImageOnly", true);
     $("#datepicker").datepicker("option", "buttonImage", $("#contextPath").val() + '/css/calendar.png');
     
+    //支出一覧の再描画用
     function removeTbody(){
     	$(".tbody").remove();
     }

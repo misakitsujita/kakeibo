@@ -63,21 +63,27 @@ public class UserLoginController {
 		if (result.hasErrors()) {
 			return index();
 		}
-		String name = form.getName();
-		System.out.println("form" + name);
-		String password = form.getPassword();
-		List<User> userList = userRepository.findByNameAndPassword(name, password);
+		//TODO:クソ実装
+		try {
+			String name = form.getName();
+			String password = form.getPassword();
+			List<User> userList = userRepository.findByNameAndPassword(name, password);
 
-		if (!(userList.get(0).getName().equals(name))) {
+			if (!(userList.get(0).getName().equals(name))) {
+				result.rejectValue("name", null, "名前またはパスワードが一致していません");
+				return index();
+			} else if (!(userList.get(0).getPassword().equals(password))) {
+				result.rejectValue("password", null, "名前またはパスワードが一致していません");
+				return index();
+			} else {
+				model.addAttribute("userList", userList);
+				System.out.println(userList + "ログイン");
+				return "/topView";
+			}
+		} catch (Exception e) {
 			result.rejectValue("name", null, "名前またはパスワードが一致していません");
-			return index();
-		} else if (!(userList.get(0).getPassword().equals(password))) {
 			result.rejectValue("password", null, "名前またはパスワードが一致していません");
 			return index();
-		} else {
-			model.addAttribute("userList", userList);
-			System.out.println(userList + "ログイン");
-			return "/topView";
 		}
 	}
 
@@ -101,9 +107,9 @@ public class UserLoginController {
 		// return "redirect:index";
 		return index();
 	}
-	
+
 	@RequestMapping("/update")
-	public String userUpdate(){
+	public String userUpdate() {
 		return "userUpdate";
 	}
 }
