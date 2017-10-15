@@ -19,12 +19,17 @@ $(function(){
 			url:$('#contextPath').val()+'/ajax/insertIncome',
 			type:'GET',
 			data: {jsonUser:JSON.stringify(data)},
-			contentType: 'application/JSON',
-		    success: function(data){
-		    	//textBoxリセット
-		    	$('#income').val("");
-		    	console.log("成功");
-		   	}
+			contentType: 'application/JSON'
+		})
+		.then(
+			function(data){ //通信成功時
+			alert("収入" + $('#income').val() + "円を登録しました。");
+		    //textBoxリセット
+		    $('#income').val("");
+		    console.log("成功");
+			},
+			function(){ //通信失敗時
+				alert("登録に失敗しました。");
 		});
 	});
 	
@@ -41,16 +46,20 @@ $(function(){
 			url:$('#contextPath').val()+'/ajax/insertPayment',
 			type:'GET',
 			data: {jsonPayment:JSON.stringify(data)},
-			contentType: 'application/JSON',
-		    success: function(data){
-		    	//textBoxリセット
-		    	$('#payment').val("");
-		    	$('#datepicker').val("");
-		    	//一覧再描画
-		    	removeTbody();
-		    	paymentView();
-		    	console.log("成功");
-		   	}
+			contentType: 'application/JSON'
+		})
+		.then(
+			function(data){ //通信成功時
+		    //textBoxリセット
+		    $('#payment').val("");
+		    $('#datepicker').val("");
+		    //一覧再描画
+		    removeTbody();
+		    paymentView();
+		    console.log("成功");
+		   	},
+		   	function(){ //通信失敗時
+				alert("登録に失敗しました。");
 		});
 	});
 	

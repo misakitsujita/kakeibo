@@ -33,8 +33,9 @@ public class AjaxController {
 	 */
 	@RequestMapping("/insertIncome")
 	@ResponseBody
-	public void userInsert(String jsonUser) {
+	public String userInsert(String jsonUser) {
 		userRepository.saveIncome(service.jsonToUser(jsonUser));
+		return jsonUser;
 	}
 
 	/**
