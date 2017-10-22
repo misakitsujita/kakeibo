@@ -4,3 +4,22 @@ img.ui-datepicker-trigger{
   cursor: pointer;
   margin-left: 5px!important;
 }
+
+.formTable {
+	display: table;
+	width: 100%;
+}
+
+#incomeForm {
+	display: table-cell;
+	text-align: left;
+	width: 30%;
+  	margin: 0 auto;
+}
+
+#paymentFrom {
+	display: table-cell;
+	text-align: left;
+	width: 30%;
+  	margin: 0 auto;
+}

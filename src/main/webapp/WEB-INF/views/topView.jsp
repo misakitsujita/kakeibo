@@ -13,25 +13,31 @@
 	
 	<input type="hidden" value="${pageContext.request.contextPath}" id="contextPath">
 	
-	<div align="left">
-	<p>収入</p>
-	<span id="incomeValidation"></span>
-	<input type="text" id="income"> 円 / 月 <input type="hidden" value="${userList[0].id}" id="id">
-	<input type="submit" value="登録" id="insertIncome" class="btn btn-default btn-sm">
+	<div class="formTable">
 	
-	<div></div>
+		<div id="incomeForm" align="left">
+			<p>収入</p>
+			<span id="incomeValidation"></span>
+			<input type="text" id="income"> 円 / 月 <input type="hidden" value="${userList[0].id}" id="id">
+			<input type="submit" value="登録" id="insertIncome" class="btn btn-default btn-sm">
+		</div>
+		
+		<div></div>
+		
+		<div id="paymentFrom">
+			<p>支出</p>
+			<form>
+			<select id="selectBox" class="form-control selectpicker" style="width:150px;">
+			<option value="1">飲み代</option>
+			<option value="2">食費</option>
+			<option value="3">生活費</option>
+			<option value="4">交通費</option>
+			</select>
+			</form>
+			<input type="text" id="payment"> 円 / 日付 <input type="text" id="datepicker"> 
+			<input type="submit" value="登録" id="insertPayment" class="btn btn-default btn-sm">
+		</div>
 	
-	<p>支出</p>
-	<form>
-	<select id="selectBox" class="form-control selectpicker" style="width:150px;">
-	<option value="1">飲み代</option>
-	<option value="2">食費</option>
-	<option value="3">生活費</option>
-	<option value="4">交通費</option>
-	</select>
-	</form>
-	<input type="text" id="payment"> 円 / 日付 <input type="text" id="datepicker"> 
-	<input type="submit" value="登録" id="insertPayment" class="btn btn-default btn-sm">
 	</div>
 	
 	<table id="paymentTable" class="table table-hover">
