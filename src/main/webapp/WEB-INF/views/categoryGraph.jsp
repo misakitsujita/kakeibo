@@ -8,11 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div class="container" align="center">
 
 	<c:forEach var="list" items="${paymentList}">
 		<p class="category" style="display: none">${list.category}</p>
@@ -64,6 +67,17 @@
 		          //グラフのデータ
 		          data: sum
 		      }]
+		  },
+		  options: {                             //◆オプション
+	            responsive: true,                  //グラフ自動設定
+	            layout: {                             //レイアウト
+	                padding: {                          //余白設定
+	                    left: 100,
+	                    right: 50,
+	                    top: 0,
+	                    bottom: 0
+	                }
+	            }
 		  }
 		});
 	});
@@ -104,17 +118,36 @@
 		          //グラフのデータ
 		          data: [income,payment]
 		      }]
+		  },
+		  options: {                             //◆オプション
+	            responsive: true,                  //グラフ自動設定
+	            layout: {                             //レイアウト
+	                padding: {                          //余白設定
+	                    left: 100,
+	                    right: 50,
+	                    top: 0,
+	                    bottom: 0
+	                }
+	            }
 		  }
 		});
 	}); 
 	
 	</script>
 
-<canvas id="canvas"></canvas>
-<canvas id="canvas2"></canvas>
-<div></div>
+	<div class="graph-container">
+		<canvas id="canvas" class="graph"></canvas>
+	</div>
+	
+	<div class="graph-container">
+		<canvas id="canvas2" class="graph"></canvas>
+	</div>
+	
+	<div></div>
+	
+	<a href="${pageContext.request.contextPath}/top/index?userId=${userList[0].id}">戻る</a>
 
-<a href="${pageContext.request.contextPath}/top/index?userId=${userList[0].id}">戻る</a>
+</div>
 
 </body>
 </html>
