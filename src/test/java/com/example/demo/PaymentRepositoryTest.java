@@ -53,7 +53,7 @@ public class PaymentRepositoryTest {
 
 	@Test
 	public void findByUserIdTest() {
-		System.out.println(paymentRepository.findByUserId(1));
+		System.out.println(paymentRepository.findByUserId(1,"201710"));
 	}
 
 	@Test

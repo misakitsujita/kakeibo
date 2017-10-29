@@ -40,7 +40,7 @@ public class PaymentRepository {
 	};
 	
 	/**
-	 * ケテゴリーグラフ表示用
+	 * カテゴリーグラフ表示用
 	 */
 	private final static RowMapper<Payment> CATEGORY_GRAPH_ROWMAPPER = (rs, i) -> {
 		Payment payment = new Payment();
@@ -92,9 +92,9 @@ public class PaymentRepository {
 	 *            ユーザID
 	 * @return 検索結果 複数件
 	 */
-	public List<Payment> findByUserId(Integer userId) {
-		String sql = "SELECT date,category,payment from payments INNER JOIN categories ON payments.category_id=categories.id WHERE user_id = :userId ORDER BY date DESC";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+	public List<Payment> findByUserId(Integer userId,String yearAndMonth) {
+		String sql = "SELECT date,category,payment from payments INNER JOIN categories ON payments.category_id=categories.id WHERE user_id = :userId and to_char(date,'yyyyMM')=:yearAndMonth ORDER BY date DESC";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("yearAndMonth", yearAndMonth);
 		List<Payment> paymentList = template.query(sql, param, PAYMENTLIST_ROWMAPPER);
 		return paymentList;
 	}
