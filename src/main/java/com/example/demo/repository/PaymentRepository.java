@@ -113,10 +113,10 @@ public class PaymentRepository {
 	 * @param userId
 	 * @return　リスト
 	 */
-	public List<Payment> findBySumAndCategory(Integer userId) {
+	public List<Payment> findBySumAndCategory(Integer userId,String yearAndMonth) {
 		String sql = "SELECT SUM(payment),category FROM payments INNER JOIN categories ON payments.category_id=categories.id "
-				+ " WHERE user_id = :userId GROUP BY category ORDER BY category";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+				+ " WHERE user_id = :userId  and to_char(date,'yyyyMM')=:yearAndMonth GROUP BY category ORDER BY category";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("yearAndMonth", yearAndMonth);
 		List<Payment> paymentList = template.query(sql, param, CATEGORY_GRAPH_ROWMAPPER);
 		return paymentList;
 	}
@@ -126,9 +126,9 @@ public class PaymentRepository {
 	 * @param userId
 	 * @return　リスト
 	 */
-	public List<Payment> findBalanceOfPayments(Integer userId) {
-		String sql = "SELECT SUM(payment),income FROM payments INNER JOIN users ON payments.user_id=users.id WHERE user_id = :userId GROUP BY income";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+	public List<Payment> findBalanceOfPayments(Integer userId,String yearAndMonth) {
+		String sql = "SELECT SUM(payment),income FROM payments INNER JOIN users ON payments.user_id=users.id WHERE user_id = :userId  and to_char(date,'yyyyMM')=:yearAndMonth GROUP BY income";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("yearAndMonth", yearAndMonth);
 		List<Payment> paymentList = template.query(sql, param, BALANCE_OF_PAYMENTS_GRAPH_ROWMAPPER);
 		return paymentList;
 	}

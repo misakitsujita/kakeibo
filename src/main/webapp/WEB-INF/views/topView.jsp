@@ -40,6 +40,7 @@
 	
 	</div>
 	
+	<h4>今月の支出一覧</h4>
 	<table id="paymentTable" class="table table-hover">
 		<thead id="head">
 			<tr>

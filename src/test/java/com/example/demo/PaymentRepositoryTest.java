@@ -63,13 +63,13 @@ public class PaymentRepositoryTest {
 	
 	@Test
 	public void findBySumAndCategory() {
-		List<Payment> list = paymentRepository.findBySumAndCategory(1);
+		List<Payment> list = paymentRepository.findBySumAndCategory(1,"201710");
 		System.out.println("合計 : " + list.get(0).getSum() + " : " + list.get(0).getCategory());
 	}
 	
 	@Test
 	public void findBalanceByPayments(){
-		List<Payment> list = paymentRepository.findBalanceOfPayments(1);
+		List<Payment> list = paymentRepository.findBalanceOfPayments(1,"201710");
 		System.out.println("収支 : " + list.get(0).getSum() + " : " + list.get(0).getIncome());
 	}
 }

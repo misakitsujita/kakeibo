@@ -1,8 +1,6 @@
 package com.example.demo.web;
 
 
-import java.sql.Date;
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import com.example.demo.domein.Payment;
 import com.example.demo.repository.PaymentRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.AjaxService;
+import com.example.demo.service.GetNow;
 
 @Controller
 @Transactional
@@ -28,6 +27,9 @@ public class AjaxController {
 
 	@Autowired
 	private AjaxService service;
+	
+	@Autowired
+	private GetNow getNow;
 
 	/**
 	 * JsonでUserを受け取り収入を登録する.
@@ -63,15 +65,7 @@ public class AjaxController {
 	@ResponseBody
 	public String paymentFindAll(Integer userId) {
 		//String json = service.paymenrToJson(paymentRepository.findByUserId(userId));
-		//今月分のみ一覧表示
-		LocalDate date = LocalDate.now();
-		int y = date.getYear();
-		String year = String.valueOf(y);
-		int m = date.getMonthValue();
-		String month = String.valueOf(m);
-		String yearAndMonth = year + month;
-		System.out.println(yearAndMonth);
-		return service.paymenrToJson(paymentRepository.findByUserId(userId,yearAndMonth));
+		return service.paymenrToJson(paymentRepository.findByUserId(userId,getNow.yearAndMonth()));
 	}
 
 	/**
