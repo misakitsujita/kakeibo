@@ -10,19 +10,19 @@ $(function(){
 	
 	//収入登録（インサート）
 	$('#insertIncome').on('click',function(){
-		var data = {
+		const incomeData = {
 				"income" :$('#income').val(),
 				"id" :$('#id').val()
 		};
-		console.log(JSON.stringify(data));
+		console.log(JSON.stringify(incomeData));
 		$.ajax({
 			url:$('#contextPath').val()+'/ajax/insertIncome',
 			type:'GET',
-			data: {jsonUser:JSON.stringify(data)},
+			data: {jsonUser:JSON.stringify(incomeData)},
 			contentType: 'application/JSON'
 		})
 		.then(
-			function(data){ //通信成功時
+			function(incomeData){ //通信成功時
 			alert("収入" + $('#income').val() + "円を登録しました。");
 		    //textBoxリセット
 		    $('#income').val("");
@@ -35,21 +35,21 @@ $(function(){
 	
 	//支出登録
 	$('#insertPayment').on('click',function(){
-		var data = {
+		const paymentData = {
 				"userId" :$('#id').val(),
 				"categoryId" :$('#selectBox').val(),
 				"payment" :$('#payment').val(),
 				"date" :$('#datepicker').val()
 		};
-		console.log(JSON.stringify(data));
+		console.log(JSON.stringify(paymentData));
 		$.ajax({
 			url:$('#contextPath').val()+'/ajax/insertPayment',
 			type:'GET',
-			data: {jsonPayment:JSON.stringify(data)},
+			data: {jsonPayment:JSON.stringify(paymentData)},
 			contentType: 'application/JSON'
 		})
 		.then(
-			function(data){ //通信成功時
+			function(paymentData){ //通信成功時
 		    //textBoxリセット
 		    $('#payment').val("");
 		    $('#datepicker').val("");
@@ -83,7 +83,7 @@ $(function(){
 			type:'GET',
 			dataType:'json',
 			success: function(json){
-				for(var i in json){
+				for(let i in json){
 					let date = json[i].date;
 					//console.log(date);
 					let category = json[i].category;

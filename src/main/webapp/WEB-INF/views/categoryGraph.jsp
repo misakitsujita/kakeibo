@@ -31,8 +31,8 @@
 	
 	//カテゴリー別グラフ
 	$(function() {
-    	var category=new Array();
-		var sum=new Array();
+    	const category=new Array();
+    	const sum=new Array();
 
 		$(".category").each(function (index) {
 			category.push($(this).text());
@@ -45,8 +45,8 @@
 		console.log(sum);
 
 		//円グラフ
-		var ctx = document.getElementById("canvas");
-		var canvas = new Chart(ctx, {
+		let ctx = document.getElementById("canvas");
+		let canvas = new Chart(ctx, {
 		  //グラフの種類
 		  type: 'pie',
 		  //データの設定
@@ -84,8 +84,8 @@
 	
 	//収支グラフ
  	$(function() {
-    	var income=new Array();
-		var payment=new Array();
+    	const income=new Array();
+	const payment=new Array();
 
 		$(".income").each(function (index) {
 			income.push($(this).text());
@@ -98,8 +98,8 @@
 		console.log(payment);
 
 		//円グラフ
-		var ctx = document.getElementById("canvas2");
-		var canvas = new Chart(ctx, {
+		let ctx = document.getElementById("canvas2");
+		let canvas = new Chart(ctx, {
 		  //グラフの種類
 		  type: 'doughnut',
 		  //データの設定
@@ -132,8 +132,25 @@
 		  }
 		});
 	}); 
+
+	//今月が何月か取得
+	window.onload = function(){
+		document.getElementById("viewMonth").innerHTML = getNow();
+	}
+
+ 	function getNow() {
+ 		let now = new Date();
+ 		let year = now.getFullYear();
+ 		let mon = now.getMonth()+1;
+
+ 		//出力用
+ 		const month = mon + "月"; 
+ 		return month;
+ 	}
 	
 	</script>
+	
+	<h4><span id="viewMonth"></span>分のグラフ</h4>
 
 	<div class="graph-container">
 		<canvas id="canvas" class="graph"></canvas>
