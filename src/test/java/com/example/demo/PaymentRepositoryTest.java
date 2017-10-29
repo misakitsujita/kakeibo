@@ -11,12 +11,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.domein.Payment;
 import com.example.demo.repository.PaymentRepository;
+import com.example.demo.service.GetNow;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PaymentRepositoryTest {
 	@Autowired
 	PaymentRepository paymentRepository;
+	@Autowired
+	GetNow getNow;
 
 //	@Test
 //	public void insertTest() {
@@ -43,7 +46,7 @@ public class PaymentRepositoryTest {
 
 	@Test
 	public void loadTest() {
-		System.out.println(paymentRepository.load(1));
+		System.out.println(paymentRepository.load(2));
 	}
 
 	@Test
@@ -53,7 +56,7 @@ public class PaymentRepositoryTest {
 
 	@Test
 	public void findByUserIdTest() {
-		System.out.println(paymentRepository.findByUserId(1,"201710"));
+		System.out.println(paymentRepository.findByUserId(2,"201710"));
 	}
 
 	@Test
@@ -63,13 +66,25 @@ public class PaymentRepositoryTest {
 	
 	@Test
 	public void findBySumAndCategory() {
-		List<Payment> list = paymentRepository.findBySumAndCategory(1,"201710");
+		List<Payment> list = paymentRepository.findBySumAndCategory(2,"201710");
 		System.out.println("合計 : " + list.get(0).getSum() + " : " + list.get(0).getCategory());
 	}
 	
 	@Test
 	public void findBalanceByPayments(){
-		List<Payment> list = paymentRepository.findBalanceOfPayments(1,"201710");
+		List<Payment> list = paymentRepository.findBalanceOfPayments(2,"201710");
 		System.out.println("収支 : " + list.get(0).getSum() + " : " + list.get(0).getIncome());
+	}
+	
+	@Test
+	public void findMonthOfPayments() {
+		List<Payment> list = paymentRepository.findMonthOfPayments(2,getNow.yearAndMonth());
+		System.out.println("月別 : " + list.get(0).getSum());
+	}
+	
+	@Test
+	public void findDayOfPayments() {
+		List<Payment> list = paymentRepository.findDayOfPayments(2,getNow.yearAndMonth());
+		System.out.println("日別 : " + list.get(0).getSum() + " : " + list.get(0).getMonth());
 	}
 }

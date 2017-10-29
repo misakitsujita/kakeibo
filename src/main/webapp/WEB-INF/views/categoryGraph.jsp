@@ -26,6 +26,12 @@
 		<p class="income" style="display: none">${paymentAndIncomeList.income}</p>
 		<p class="payment" style="display: none">${paymentAndIncomeList.sum}</p>
 	</c:forEach>
+	
+	<c:forEach var="dayOfPaymentsList" items="${dayOfPaymentsList}">
+		<p class="dayOfPayment" style="display: none">${dayOfPaymentsList.sum}</p>
+		<p class="month" style="display: none">${dayOfPaymentsList.month}</p>
+		<p class="day" style="display: none">${dayOfPaymentsList.day}</p>
+	</c:forEach>
 
 	<script type="text/javascript">
 	
@@ -131,7 +137,61 @@
 	            }
 		  }
 		});
-	}); 
+	});
+	
+ 	//日別合計グラフ
+	$(function() {
+    	const dayOfPayment=new Array();
+    	const day=new Array();
+
+		$(".dayOfPayment").each(function (index) {
+			dayOfPayment.push($(this).text());
+		});
+		console.log(dayOfPayment);
+
+		$(".day").each(function (index) {
+			day.push($(this).text());
+		});
+		console.log(day);
+
+		//棒グラフ
+		let ctx = document.getElementById("canvas3");
+		let canvas = new Chart(ctx, {
+			//グラフの種類
+			  type: 'bar',
+			  //データの設定
+			  data: {
+			      //データ項目のラベル
+			      labels: day,
+			      //データセット
+			      datasets: [{
+			          //凡例
+			          label: "支出合計",
+			          //背景色
+			          backgroundColor: "rgba(75,192,192,0.4)",
+			          //枠線の色
+			          borderColor: "rgba(75,192,192,1)",
+			          //グラフのデータ
+			          data: dayOfPayment
+			      }]
+			  },
+			  //オプションの設定
+			  options: {
+				  responsive: true,
+			      //軸の設定
+			      scales: {
+			          //縦軸の設定
+			          yAxes: [{
+				  		//目盛りの設定
+			              ticks: {
+			                  //開始値を0にする
+			                  beginAtZero:true,
+			              }
+			          }]
+			      }
+			  }
+		});
+	});
 
 	//今月が何月か取得
 	window.onload = function(){
@@ -159,6 +219,8 @@
 	<div class="graph-container">
 		<canvas id="canvas2" class="graph"></canvas>
 	</div>
+	
+	<canvas id="canvas3"></canvas>
 	
 	<div></div>
 	

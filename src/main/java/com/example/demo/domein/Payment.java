@@ -1,6 +1,7 @@
 package com.example.demo.domein;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Payment {
 	
@@ -16,6 +17,9 @@ public class Payment {
 	/** 日付 */
 	private Date date;
 	
+	private Integer month;
+	private Integer day;
+	
 	/** カテゴリー */
 	private String category;
 	
@@ -25,6 +29,23 @@ public class Payment {
 	/** 収入 */
 	private Integer income;
 	
+	
+	
+	public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+
+	public Integer getDay() {
+		return day;
+	}
+
+	public void setDay(Integer day) {
+		this.day = day;
+	}
 
 	public Integer getIncome() {
 		return income;

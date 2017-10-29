@@ -59,6 +59,26 @@ public class PaymentRepository {
 		payment.setIncome(rs.getInt("income"));
 		return payment;
 	};
+	
+	/**
+	 * 日別グラフ表示用
+	 */
+	private final static RowMapper<Payment> DAY_OF_PAYMENTS_GRAPH_ROWMAPPER = (rs, i) -> {
+		Payment payment = new Payment();
+		payment.setSum(rs.getInt("sum"));
+		payment.setMonth(rs.getInt("month"));
+		payment.setDay(rs.getInt("day"));
+		return payment;
+	};
+	
+	/**
+	 * 月別グラフ表示用
+	 */
+	private final static RowMapper<Payment> MONTH_OF_PAYMENTS_GRAPH_ROWMAPPER = (rs, i) -> {
+		Payment payment = new Payment();
+		payment.setSum(rs.getInt("sum"));
+		return payment;
+	};
 
 	/**
 	 * 主キー検索.
@@ -130,6 +150,32 @@ public class PaymentRepository {
 		String sql = "SELECT SUM(payment),income FROM payments INNER JOIN users ON payments.user_id=users.id WHERE user_id = :userId  and to_char(date,'yyyyMM')=:yearAndMonth GROUP BY income";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("yearAndMonth", yearAndMonth);
 		List<Payment> paymentList = template.query(sql, param, BALANCE_OF_PAYMENTS_GRAPH_ROWMAPPER);
+		return paymentList;
+	}
+	
+	/**
+	 * 日別支出を検索.
+	 * @param userId
+	 * @param yearAndMonth
+	 * @return　リスト
+	 */
+	public List<Payment> findDayOfPayments(Integer userId,String yearAndMonth) {
+		String sql = "SELECT SUM(payment),DATE_PART('MONTH',date) AS month,DATE_PART('DAY',date) AS day FROM payments INNER JOIN users ON payments.user_id=users.id WHERE user_id = :userId and to_char(date,'yyyyMM')=:yearAndMonth GROUP BY date ORDER BY date;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("yearAndMonth", yearAndMonth);
+		List<Payment> paymentList = template.query(sql, param, DAY_OF_PAYMENTS_GRAPH_ROWMAPPER);
+		return paymentList;
+	}
+	
+	/**
+	 * 月別支出を検索.
+	 * @param userId
+	 * @param yearAndMonth
+	 * @return　リスト
+	 */
+	public List<Payment> findMonthOfPayments(Integer userId,String yearAndMonth) {
+		String sql = "SELECT SUM(payment) FROM payments INNER JOIN users ON payments.user_id=users.id WHERE user_id = :userId  GROUP BY to_char(date,'yyyyMM')=:yearAndMonth";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("yearAndMonth", yearAndMonth);
+		List<Payment> paymentList = template.query(sql, param, MONTH_OF_PAYMENTS_GRAPH_ROWMAPPER);
 		return paymentList;
 	}
 

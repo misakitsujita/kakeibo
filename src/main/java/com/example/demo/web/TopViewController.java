@@ -43,6 +43,9 @@ public class TopViewController {
 
 		List<Payment> paymentAndIncomeList = paymentRepository.findBalanceOfPayments(userId, getNow.yearAndMonth());
 		model.addAttribute("paymentAndIncomeList", paymentAndIncomeList);
+		
+		List<Payment> dayOfPaymentsList = paymentRepository.findDayOfPayments(userId, getNow.yearAndMonth());
+		model.addAttribute("dayOfPaymentsList", dayOfPaymentsList);
 
 		List<User> userList = userRepository.load(userId);
 		model.addAttribute("userList", userList);
