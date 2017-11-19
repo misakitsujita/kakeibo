@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -78,13 +77,21 @@ public class PaymentRepositoryTest {
 	
 	@Test
 	public void findMonthOfPayments() {
-		List<Payment> list = paymentRepository.findMonthOfPayments(2,getNow.yearAndMonth());
-		System.out.println("月別 : " + list.get(0).getSum());
+		System.out.println(getNow.getYear());
+		List<Payment> list = paymentRepository.findMonthOfPayments(2,getNow.getYear());
+		for (Payment payment : list) {
+			System.out.println("合計" + payment.getSum());
+			System.out.println("月" + payment.getMonth());
+		}
 	}
 	
 	@Test
 	public void findDayOfPayments() {
 		List<Payment> list = paymentRepository.findDayOfPayments(2,getNow.yearAndMonth());
-		System.out.println("日別 : " + list.get(0).getSum() + " : " + list.get(0).getMonth());
+		for (Payment payment : list) {
+			System.out.println("合計" + payment.getSum());
+			System.out.println("月" + payment.getMonth());
+			System.out.println("日" + payment.getDay());
+		}
 	}
 }

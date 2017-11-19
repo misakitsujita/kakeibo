@@ -32,6 +32,11 @@
 		<p class="month" style="display: none">${dayOfPaymentsList.month}</p>
 		<p class="day" style="display: none">${dayOfPaymentsList.day}</p>
 	</c:forEach>
+	
+	<c:forEach var="monthOfPaymentsList" items="${monthOfPaymentsList}">
+		<p class="monthOfPayment" style="display: none">${monthOfPaymentsList.sum}</p>
+		<p class="month2" style="display: none">${monthOfPaymentsList.month}</p>
+	</c:forEach>
 
 	<script type="text/javascript">
 	
@@ -192,6 +197,60 @@
 			  }
 		});
 	});
+ 	
+	//月別合計グラフ
+	$(function() {
+    	const monthOfPayment=new Array();
+    	const month=new Array();
+
+		$(".monthOfPayment").each(function (index) {
+			monthOfPayment.push($(this).text());
+		});
+		console.log(monthOfPayment);
+
+		$(".month2").each(function (index) {
+			month.push($(this).text());
+		});
+		console.log(month);
+
+		//棒グラフ
+		let ctx = document.getElementById("canvas4");
+		let canvas = new Chart(ctx, {
+			//グラフの種類
+			  type: 'bar',
+			  //データの設定
+			  data: {
+			      //データ項目のラベル
+			      labels: month,
+			      //データセット
+			      datasets: [{
+			          //凡例
+			          label: "支出合計",
+			          //背景色
+			          backgroundColor: "rgba(75,192,192,0.4)",
+			          //枠線の色
+			          borderColor: "rgba(75,192,192,1)",
+			          //グラフのデータ
+			          data: monthOfPayment
+			      }]
+			  },
+			  //オプションの設定
+			  options: {
+				  responsive: true,
+			      //軸の設定
+			      scales: {
+			          //縦軸の設定
+			          yAxes: [{
+				  		//目盛りの設定
+			              ticks: {
+			                  //開始値を0にする
+			                  beginAtZero:true,
+			              }
+			          }]
+			      }
+			  }
+		});
+	});
 
 	//今月が何月か取得
 	window.onload = function(){
@@ -221,6 +280,7 @@
 	</div>
 	
 	<canvas id="canvas3"></canvas>
+	<canvas id="canvas4"></canvas>
 	
 	<div></div>
 	

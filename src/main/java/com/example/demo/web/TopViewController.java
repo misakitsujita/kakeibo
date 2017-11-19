@@ -38,15 +38,22 @@ public class TopViewController {
 
 	@RequestMapping("/viewGraph")
 	public String insertIncome(Model model, Integer userId) {
+		//カテゴリー
 		List<Payment> paymentList = paymentRepository.findBySumAndCategory(userId, getNow.yearAndMonth());
 		model.addAttribute("paymentList", paymentList);
 
+		//収支
 		List<Payment> paymentAndIncomeList = paymentRepository.findBalanceOfPayments(userId, getNow.yearAndMonth());
 		model.addAttribute("paymentAndIncomeList", paymentAndIncomeList);
 		
+		//日別
 		List<Payment> dayOfPaymentsList = paymentRepository.findDayOfPayments(userId, getNow.yearAndMonth());
 		model.addAttribute("dayOfPaymentsList", dayOfPaymentsList);
 
+		//月別
+		List<Payment> monthOfPaymentsList = paymentRepository.findMonthOfPayments(userId, getNow.getYear());
+		model.addAttribute("monthOfPaymentsList", monthOfPaymentsList);
+		
 		List<User> userList = userRepository.load(userId);
 		model.addAttribute("userList", userList);
 		return "categoryGraph";
