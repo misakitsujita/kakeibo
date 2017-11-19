@@ -8,8 +8,20 @@ $(function(){
 		console.log($("#contextPath").val());
 	});
 	
+	//テキストボックス入力制限：半角数値のみ
+	$("[with]").off(".inputcontrol")
+    $("[with='numeric']")
+        .off(".inputcontrol.numeric")
+        .on("keyup.inputcontrol.numeric", function(){
+            $(this).val($(this).val().replace(/[^0-9]/g,""));
+    })
+    //日付の手入力不可
+    const datepickerText = document.getElementById("datepicker");
+	datepickerText.readOnly = true;
+	
 	//収入登録（インサート）
 	$('#insertIncome').on('click',function(){
+	    //値の取得・jsonに変換
 		const incomeData = {
 				"income" :$('#income').val(),
 				"id" :$('#id').val()
@@ -35,6 +47,7 @@ $(function(){
 	
 	//支出登録
 	$('#insertPayment').on('click',function(){
+	    //値の取得・jsonに変換
 		const paymentData = {
 				"userId" :$('#id').val(),
 				"categoryId" :$('#selectBox').val(),

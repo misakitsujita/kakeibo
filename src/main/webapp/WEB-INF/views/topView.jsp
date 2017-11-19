@@ -18,7 +18,7 @@
 		<div id="incomeForm" align="left">
 			<p>収入</p>
 			<span id="incomeValidation"></span>
-			<input type="text" id="income"> 円 / 月 <input type="hidden" value="${userList[0].id}" id="id">
+			<input type="text" id="income" with="numeric"> 円 / 月 <input type="hidden" value="${userList[0].id}" id="id">
 			<input type="submit" value="登録" id="insertIncome" class="btn btn-default btn-sm">
 		</div>
 		
@@ -34,7 +34,7 @@
 					<option value="4">交通費</option>
 				</select>
 			</form>
-			<nobr><input type="text" id="payment"> 円 / 日付 <input type="text" id="datepicker"> </nobr>
+			<nobr><input type="text" id="payment"  with="numeric"> 円 / 日付 <input type="text" id="datepicker"> </nobr>
 			<input type="submit" value="登録" id="insertPayment" class="btn btn-default btn-sm">
 		</div>
 	

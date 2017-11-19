@@ -227,9 +227,9 @@
 			          //凡例
 			          label: "支出合計",
 			          //背景色
-			          backgroundColor: "rgba(75,192,192,0.4)",
+			          backgroundColor: "#DDA0DD",
 			          //枠線の色
-			          borderColor: "rgba(75,192,192,1)",
+			          borderColor: "#DA70D6",
 			          //グラフのデータ
 			          data: monthOfPayment
 			      }]
