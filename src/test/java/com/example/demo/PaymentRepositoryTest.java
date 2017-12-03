@@ -94,4 +94,10 @@ public class PaymentRepositoryTest {
 			System.out.println("日" + payment.getDay());
 		}
 	}
+	
+//	@Test
+//	public void delete() {
+//		paymentRepository.delete(2);
+//		System.out.println("削除完了");
+//	}
 }

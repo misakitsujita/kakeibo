@@ -32,6 +32,7 @@ public class PaymentRepository {
 	 */
 	private final static RowMapper<Payment> PAYMENTLIST_ROWMAPPER = (rs, i) -> {
 		Payment payment = new Payment();
+		payment.setId(rs.getInt("id"));
 		payment.setPayment(rs.getInt("payment"));
 		payment.setDate(rs.getDate("date"));
 		payment.setCategory(rs.getString("category"));
@@ -114,7 +115,7 @@ public class PaymentRepository {
 	 * @return 検索結果 複数件
 	 */
 	public List<Payment> findByUserId(Integer userId, String yearAndMonth) {
-		String sql = "SELECT date,category,payment from payments INNER JOIN categories ON payments.category_id=categories.id WHERE user_id = :userId and to_char(date,'yyyyMM')=:yearAndMonth ORDER BY date DESC";
+		String sql = "SELECT payments.id,date,category,payment from payments INNER JOIN categories ON payments.category_id=categories.id WHERE user_id = :userId and to_char(date,'yyyyMM')=:yearAndMonth ORDER BY date,category DESC";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("yearAndMonth",
 				yearAndMonth);
 		List<Payment> paymentList = template.query(sql, param, PAYMENTLIST_ROWMAPPER);
@@ -218,5 +219,15 @@ public class PaymentRepository {
 		// WHERE id=:id";
 		// template.update(update,param);
 		// }
+	}
+	
+	/**
+	 * 支出削除.
+	 * @param id
+	 */
+	public void delete(Integer id) {
+		String sql ="DELETE FROM payments WHERE id =:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		template.update(sql, param);
 	}
 }

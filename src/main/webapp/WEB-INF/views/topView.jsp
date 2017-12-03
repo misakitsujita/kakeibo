@@ -22,7 +22,6 @@
 			<input type="submit" value="登録" id="insertIncome" class="btn btn-default btn-sm">
 		</div>
 		
-		<div></div>
 		
 		<div id="paymentFrom">
 			<p>支出</p>
@@ -47,6 +46,7 @@
 				<th>日付</th>
 				<th>カテゴリー</th>
 				<th>値段</th>
+				<th></th>
 			</tr>
 		</thead>
 	</table>

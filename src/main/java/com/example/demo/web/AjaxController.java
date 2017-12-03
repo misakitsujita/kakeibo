@@ -67,6 +67,18 @@ public class AjaxController {
 		//String json = service.paymenrToJson(paymentRepository.findByUserId(userId));
 		return service.paymenrToJson(paymentRepository.findByUserId(userId,getNow.yearAndMonth()));
 	}
+	
+	/**
+	 * 画面からidを受け取り支出削除.
+	 * 
+	 * @param id
+	 */
+	@RequestMapping("/deletePayment")
+	@ResponseBody
+	public void deletePayment(Integer id) {
+		paymentRepository.delete(id);
+		System.out.println("削除完了");
+	}
 
 	/**
 	 * カテゴリー別支出合計リストをJson型で返す.

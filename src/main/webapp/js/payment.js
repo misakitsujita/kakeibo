@@ -97,6 +97,8 @@ $(function(){
 			dataType:'json',
 			success: function(json){
 				for(let i in json){
+					let id = json[i].id;
+					//console.log(id);
 					let date = json[i].date;
 					//console.log(date);
 					let category = json[i].category;
@@ -105,11 +107,12 @@ $(function(){
 					//console.log(payment);
 					
 					let Html = "";
-						Html += "<tbody class=\"tbody\">"
+						Html += "<tbody class=\"tbody\" id=" + id + ">"
 		 				Html += "<tr>"
 		 				Html += "<td>" + date + "</td>"
 		 				Html += "<td>" + category + "</td>"
 		 				Html += "<td>" + payment + "</td>"
+		 				Html += "<td><input type=\"submit\" value=\"削除\" class=\"delete btn btn-default btn-sm\"></td>"
 		 				Html += "</tr>"
 		 				Html += "</tbody>"
 						$('#paymentTable').append(Html);
@@ -117,5 +120,26 @@ $(function(){
 			}
 		});
 	}
+    
+    //支出削除
+    	$(document).on('click', '.delete', function(){
+    		//削除ボタン行のid取得
+    		const paymentId = $(this).parent().parent().parent().attr('id');
+    		console.log(paymentId);
+    		$.ajax({
+    			url:$('#contextPath').val()+'/ajax/deletePayment?id=' + paymentId,
+    			type:'GET',
+    		})
+    		.then(
+    			function(paymentData){ //通信成功時
+    		    //一覧再描画
+    		    removeTbody();
+    		    paymentView();
+    		    console.log("成功");
+    		   	},
+    		   	function(){ //通信失敗時
+    				alert("削除に失敗しました。");
+    		});
+    });
 
 });
