@@ -55,7 +55,7 @@ public class PaymentRepositoryTest {
 
 	@Test
 	public void findByUserIdTest() {
-		System.out.println(paymentRepository.findByUserId(2,"201710"));
+		System.out.println(paymentRepository.findByUserId(2,getNow.yearAndMonth()));
 	}
 
 	@Test

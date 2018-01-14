@@ -18,7 +18,7 @@
 		<div id="incomeForm" align="left">
 			<p>収入</p>
 			<span id="incomeValidation"></span>
-			<input type="text" id="income" with="numeric"> 円 / 月 <input type="hidden" value="${userList[0].id}" id="id">
+			<input type="text" id="income" with="numeric"> 円 / 月 <input type="hidden" value="${userList[0].id}" id="userId">
 			<input type="submit" value="登録" id="insertIncome" class="btn btn-default btn-sm">
 		</div>
 		

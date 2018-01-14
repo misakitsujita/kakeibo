@@ -24,7 +24,7 @@ $(function(){
 	    //値の取得・jsonに変換
 		const incomeData = {
 				"income" :$('#income').val(),
-				"id" :$('#id').val()
+				"id" :$('#userId').val()
 		};
 		console.log(JSON.stringify(incomeData));
 		$.ajax({
@@ -49,7 +49,7 @@ $(function(){
 	$('#insertPayment').on('click',function(){
 	    //値の取得・jsonに変換
 		const paymentData = {
-				"userId" :$('#id').val(),
+				"userId" :$('#userId').val(),
 				"categoryId" :$('#selectBox').val(),
 				"payment" :$('#payment').val(),
 				"date" :$('#datepicker').val()
@@ -92,19 +92,19 @@ $(function(){
     function paymentView(){
     	//removeTbody();
 		$.ajax({
-			url:$('#contextPath').val() + '/ajax/paymentFindAll?userId=' + $('#id').val(),
+			url:$('#contextPath').val() + '/ajax/paymentFindAll?userId=' + $('#userId').val(),
 			type:'GET',
 			dataType:'json',
 			success: function(json){
 				for(let i in json){
 					let id = json[i].id;
-					//console.log(id);
+					console.log(id);
 					let date = json[i].date;
-					//console.log(date);
+					console.log(date);
 					let category = json[i].category;
-					//console.log(category);
+					console.log(category);
 					let payment = json[i].payment;
-					//console.log(payment);
+					console.log(payment);
 					
 					let Html = "";
 						Html += "<tbody class=\"tbody\" id=" + id + ">"

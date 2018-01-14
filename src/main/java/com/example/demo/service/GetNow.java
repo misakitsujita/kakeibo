@@ -21,8 +21,16 @@ public class GetNow {
 		LocalDate date = LocalDate.now();
 		int y = date.getYear();
 		String year = String.valueOf(y);
+	
+		String month = null;
 		int m = date.getMonthValue();
-		String month = String.valueOf(m);
+		//一桁の月は0をつける
+		if (m<10) {
+			String.valueOf(m);
+			month = "0" + m;
+		} else {
+			month = String.valueOf(m);
+		}
 		String yearAndMonth = year + month;
 		return yearAndMonth;
 	}
