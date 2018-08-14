@@ -179,7 +179,7 @@ public class PaymentRepository {
 	 * 月別支出を検索.
 	 * 
 	 * @param userId
-	 * @param yearAndMonth
+	 * @param year
 	 * @return リスト
 	 */
 	public List<Payment> findMonthOfPayments(Integer userId, String year) {
